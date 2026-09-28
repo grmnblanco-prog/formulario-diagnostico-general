@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Diagnóstico para Implementación de IA</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: #F5F0E8; color: #2D2A24; line-height: 1.5; }
+  .container { max-width: 780px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #8B8176; margin-bottom: 20px; }
+  .card { background: #fff; border: 1px solid rgba(45,42,36,.08); border-radius: 10px; padding: 20px 24px; margin-bottom: 12px; }
+  .card h2 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: #E8633A; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #2D2A24; }
+  label .tag { font-size: 10px; color: #8B8176; font-weight: 400; }
+  select, input[type="text"], textarea {
+    width: 100%; padding: 8px 12px; border: 1px solid rgba(45,42,36,.1); border-radius: 6px;
+    font-size: 13px; background: #fff; outline: none; transition: .15s;
+  }
+  select:focus, input:focus, textarea:focus { border-color: #E8633A; }
+  .opciones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .opcion {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px;
+    border: 1px solid rgba(45,42,36,.08); cursor: pointer; font-size: 12px; background: #fff; transition: .15s;
+  }
+  .opcion:hover { border-color: rgba(232,99,58,.2); }
+  .opcion input { display: none; }
+  .opcion.active { border-color: #E8633A; background: rgba(232,99,58,.06); }
+  .escala { display: flex; gap: 6px; justify-content: center; margin-top: 4px; }
+  .escala .num {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(45,42,36,.1);
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: .15s; background: #fff;
+  }
+  .escala .num:hover { border-color: rgba(232,99,58,.3); }
+  .escala .num.active { border-color: #E8633A; background: rgba(232,99,58,.12); }
+  .btn { padding: 10px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: .15s; }
+  .btn-primary { background: #E8633A; color: #fff; }
+  .btn-primary:hover { background: #D4522B; }
+  .btn-outline { background: transparent; border: 1px solid rgba(45,42,36,.12); color: #5C5348; }
+  .acciones { display: flex; gap: 8px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .hidden { display: none !important; }
+  .progreso { height: 4px; background: rgba(232,99,58,.15); border-radius: 2px; margin-bottom: 4px; }
+  .progreso .bar { height: 100%; width: 0%; background: #E8633A; border-radius: 2px; transition: width .3s; }
+  .madurez-cards { display: grid; gap: 8px; margin-top: 4px; }
+  .madurez-card {
+    padding: 10px 14px; border: 1px solid rgba(45,42,36,.08); border-radius: 8px; cursor: pointer; transition: .15s;
+    font-size: 12px; background: #fff;
+  }
+  .madurez-card:hover { border-color: rgba(232,99,58,.2); }
+  .madurez-card.active { border-color: #E8633A; background: rgba(232,99,58,.06); }
+  .madurez-card .nivel { font-size: 14px; font-weight: 700; color: #E8633A; }
+  .madurez-card .desc { font-size: 11px; color: #5C5348; margin-top: 2px; }
+  @media (max-width:600px){ .container{padding:14px;} .card{padding:14px 16px;} .opcion{padding:5px 10px; font-size:11px;} }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Diagnóstico de IA</h1>
+<div class="subtitle">Evalúa la madurez digital de tu organización y descubre qué procesos puedes automatizar con IA. 10–25 min.</div>
+
+<form id="form">
+<div class="progreso"><div class="bar" id="bar"></div></div>
+
+<!-- TAMAÑO DE EMPRESA -->
+<div class="card" id="card-tamano">
+  <h2>¿Qué tamaño tiene tu organización?</h2>
+  <p style="font-size:12px;color:#5C5348;margin-bottom:8px;">Según la selección, el formulario se ajusta al número de preguntas.</p>
+  <div class="opciones" id="tamano">
+    <div class="opcion" data-value="micro" onclick="seleccionarTamano('micro')">
+      <span style="font-size:18px;">👤</span> Microempresa <span style="font-size:10px;color:#8B8176;">(menos de 10 empleados)</span>
+    </div>
+    <div class="opcion" data-value="pyme" onclick="seleccionarTamano('pyme')">
+      <span style="font-size:18px;">🏢</span> PYME <span style="font-size:10px;color:#8B8176;">(10-250 empleados)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Sección 0 – Datos de la empresa -->
+<div class="card hidden" data-section="basica">
+  <h2>0. Datos de la empresa</h2>
+  <div style="margin-bottom:10px;">
+    <label>Nombre de la empresa <span class="tag">(o persona)</span></label>
+    <input type="text" id="empresa" placeholder="Ej: Mi Empresa SAS">
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>Sector / industria</label>
+    <select id="sector">
+      <option value="">Selecciona...</option>
+      <option>Alimentos y bebidas</option>
+      <option>Comercio / Retail</option>
+      <option>Construcción</option>
+      <option>Educación</option>
+      <option>Financiero / Seguros</option>
+      <option>Logística / Transporte</option>
+      <option>Manufactura</option>
+      <option>Salud / Farmacéutico</option>
+      <option>Servicios profesionales / Consultoría</option>
+      <option>Tecnología / Software</option>
+      <option>Turismo / Hospitalidad</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+</div>
+
+<!-- A. Ecosistema tecnológico -->
+<div class="card hidden" data-section="basica">
+  <h2>A. Ecosistema tecnológico</h2>
+  <div style="margin-bottom:10px;">
+    <label>1. ¿Qué herramientas digitales usan hoy?</label>
+    <div class="opciones" data-multi="herramientas">
+      <div class="opcion" onclick="toggleOpcion(this)">WhatsApp</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Correo electrónico</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Redes sociales</div>
+      <div class="opcion" onclick="toggleOpcion(this)">CRM (gestión de clientes)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">ERP / Software contable</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Tienda online / E-commerce</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Solo hojas de cálculo y papel</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>2. ¿Cómo fluye la información entre esas herramientas?</label>
+    <div class="opciones" data-radio="flujo">
+      <div class="opcion" onclick="toggleRadio(this,'flujo')">Integración automática (los sistemas se hablan solos)</div>
+      <div class="opcion" onclick="toggleRadio(this,'flujo')">Exportaciones e importaciones manuales</div>
+      <div class="opcion" onclick="toggleRadio(this,'flujo')">Sistemas aislados: los datos se vuelven a capturar</div>
+      <div class="opcion" onclick="toggleRadio(this,'flujo')">No lo sé / no se ha auditado</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>3. Estado actual de sus datos</label>
+    <div class="opciones" data-multi="datos">
+      <div class="opcion" onclick="toggleOpcion(this)">Dispersos: en hojas, correos y plataformas separadas</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Centralizados con visibilidad consolidada</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Completos y actualizados (calidad confiable)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Solo exportaciones manuales</div>
+    </div>
+  </div>
+</div>
+
+<!-- PREGUNTAS MICROEMPRESA (salen si micro) -->
+<div class="card hidden" data-section="micro">
+  <h2>B. Procesos y prioridades</h2>
+  <div style="margin-bottom:10px;">
+    <label>4. ¿Qué proceso rutinario consume más horas de tu equipo hoy?</label>
+    <textarea id="micro-proceso" rows="2" placeholder="Ej: responder consultas de clientes, gestionar pedidos, conciliar pagos..."></textarea>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>5. ¿Cuál de estos te gustaría automatizar primero?</label>
+    <div class="opciones" data-radio="micro-prioridad">
+      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Atención al cliente / consultas</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Marketing y contenido para redes</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Gestión de pedidos / inventario</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Contabilidad / facturación</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Otro</div>
+    </div>
+  </div>
+  <h2>C. Viabilidad</h2>
+  <div style="margin-bottom:10px;">
+    <label>6. ¿Qué presupuesto estimado podrías destinar a herramientas de IA al mes?</label>
+    <div class="opciones" data-radio="micro-presupuesto">
+      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">$0 — solo herramientas gratuitas</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">Hasta $30/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">$30-$100/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">Aún no tengo presupuesto definido</div>
+    </div>
+  </div>
+</div>
+
+<!-- PREGUNTAS PYME (salen si pyme) – version generalizada de MountainFood -->
+<div class="card hidden" data-section="pyme">
+  <h2>B. Mercadeo y Ventas</h2>
+  <div style="margin-bottom:10px;">
+    <label>4. ¿Cuáles son tus canales de venta hoy?</label>
+    <div class="opciones" data-multi="canales">
+      <div class="opcion" onclick="toggleOpcion(this)">Tienda online / E-commerce</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Marketplaces (MercadoLibre, Amazon, etc.)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Venta directa / presencial</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Distribuidores / mayoristas</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Exportación</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>5. ¿Qué métricas de ventas miden de forma consistente?</label>
+    <div class="opciones" data-multi="metricas">
+      <div class="opcion" onclick="toggleOpcion(this)">Ventas por canal</div>
+      <div class="opcion" onclick="toggleOpcion(this)">ROAS / retorno de inversión publicitaria</div>
+      <div class="opcion" onclick="toggleOpcion(this)">CAC (costo de adquisición de cliente)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Margen por producto o servicio</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Ninguna se mide de forma consistente</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>6. ¿Qué plataformas de publicidad usan?</label>
+    <div class="opciones" data-multi="ads">
+      <div class="opcion" onclick="toggleOpcion(this)">Meta Ads (Facebook / Instagram)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Google Ads</div>
+      <div class="opcion" onclick="toggleOpcion(this)">LinkedIn Ads</div>
+      <div class="opcion" onclick="toggleOpcion(this)">TikTok Ads</div>
+      <div class="opcion" onclick="toggleOpcion(this)">No uso publicidad paga</div>
+    </div>
+  </div>
+
+  <h2>C. Operaciones</h2>
+  <div style="margin-bottom:10px;">
+    <label>7. ¿Cómo se gestionan hoy los pedidos / la producción / los servicios?</label>
+    <div class="opciones" data-radio="operacion">
+      <div class="opcion" onclick="toggleRadio(this,'operacion')">Manual: Excel, pizarra, papel</div>
+      <div class="opcion" onclick="toggleRadio(this,'operacion')">Software especializado (ERP / WMS / CRM)</div>
+      <div class="opcion" onclick="toggleRadio(this,'operacion')">Mixto: depende del área o volumen</div>
+      <div class="opcion" onclick="toggleRadio(this,'operacion')">Sin proceso formal definido</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>8. Retos operativos actuales</label>
+    <div class="opciones" data-multi="retos">
+      <div class="opcion" onclick="toggleOpcion(this)">Cumplimiento de pedidos a tiempo</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Control de inventario / insumos</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Mermas / pérdidas / errores</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Coordinación entre áreas</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Seguimiento a clientes post-venta</div>
+    </div>
+  </div>
+
+  <h2>D. Finanzas y Contabilidad</h2>
+  <div style="margin-bottom:10px;">
+    <label>9. ¿Cómo llevan la contabilidad hoy?</label>
+    <div class="opciones" data-radio="contabilidad">
+      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">ERP con módulo contable integrado</div>
+      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Software contable separado con carga manual</div>
+      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Contador externo con reportes manuales</div>
+      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Hojas de cálculo y correos</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>10. ¿Con qué certeza conoces la rentabilidad real por producto/servicio?</label>
+    <div class="escala" data-escala="rentabilidad">
+      <div class="num" onclick="setEscala(this,'rentabilidad')">1</div>
+      <div class="num" onclick="setEscala(this,'rentabilidad')">2</div>
+      <div class="num" onclick="setEscala(this,'rentabilidad')">3</div>
+      <div class="num" onclick="setEscala(this,'rentabilidad')">4</div>
+      <div class="num" onclick="setEscala(this,'rentabilidad')">5</div>
+    </div>
+    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = no se sabe · 5 = cálculo en tiempo real</div>
+  </div>
+
+  <h2>E. Tecnología y equipo</h2>
+  <div style="margin-bottom:10px;">
+    <label>11. ¿Cuentan con equipo o persona responsable de TI?</label>
+    <div class="opciones" data-radio="ti">
+      <div class="opcion" onclick="toggleRadio(this,'ti')">Sí, equipo interno de TI</div>
+      <div class="opcion" onclick="toggleRadio(this,'ti')">Sí, una persona encargada (comparte funciones)</div>
+      <div class="opcion" onclick="toggleRadio(this,'ti')">Proveedor / consultor externo</div>
+      <div class="opcion" onclick="toggleRadio(this,'ti')">No contamos con soporte TI</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>12. Capacidad del soporte TI para implementar soluciones de IA</label>
+    <div class="escala" data-escala="ti-cap">
+      <div class="num" onclick="setEscala(this,'ti-cap')">1</div>
+      <div class="num" onclick="setEscala(this,'ti-cap')">2</div>
+      <div class="num" onclick="setEscala(this,'ti-cap')">3</div>
+      <div class="num" onclick="setEscala(this,'ti-cap')">4</div>
+      <div class="num" onclick="setEscala(this,'ti-cap')">5</div>
+    </div>
+    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte básico · 5 = equipo con capacidad de integraciones</div>
+  </div>
+
+  <h2>F. Procesos a automatizar</h2>
+  <div style="margin-bottom:10px;">
+    <label>13. ¿Qué procesos crees que deberían automatizarse primero en cada área?</label>
+    <textarea id="pys-automatizar" rows="3" placeholder="Ej: mercadeo (anuncios, contenido), operaciones (pedidos, logística), contabilidad (conciliaciones), atención al cliente (consultas)..."></textarea>
+  </div>
+</div>
+
+<!-- NIVEL DE MADUREZ IA (todos lo ven) -->
+<div class="card hidden" data-section="madurez">
+  <h2>¿En qué nivel de IA está tu organización hoy?</h2>
+  <p style="font-size:12px;color:#5C5348;margin-bottom:8px;">Selecciona el que mejor describa tu situación actual.</p>
+  <div class="madurez-cards" data-radio="madurez">
+    <div class="madurez-card" onclick="selectMadurez(this)">
+      <div class="nivel">N1 — Asistido</div>
+      <div class="desc">Usamos ChatGPT, Claude u otras IAs en el navegador. Sin integraciones.</div>
+    </div>
+    <div class="madurez-card" onclick="selectMadurez(this)">
+      <div class="nivel">N2 — Guiado</div>
+      <div class="desc">Tenemos herramientas conectadas entre sí y algunas automatizaciones básicas.</div>
+    </div>
+    <div class="madurez-card" onclick="selectMadurez(this)">
+      <div class="nivel">N3 — Automatizado</div>
+      <div class="desc">Varios procesos se ejecutan solos y los supervisamos.</div>
+    </div>
+    <div class="madurez-card" onclick="selectMadurez(this)">
+      <div class="nivel">N4 — Multi-agente</div>
+      <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIABILIDAD -->
+<div class="card hidden" data-section="viabilidad">
+  <h2>G. Viabilidad y presupuesto</h2>
+  <div style="margin-bottom:10px;">
+    <label>¿Qué presupuesto mensual podrías destinar a herramientas de IA?</label>
+    <div class="opciones" data-radio="presupuesto-final">
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0 — solo herramientas gratuitas</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0–$30/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$30–$100/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Más de $100/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Aún sin presupuesto definido</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>Comentarios adicionales</label>
+    <textarea id="comentarios" rows="2" placeholder="Algo más que debamos saber..."></textarea>
+  </div>
+</div>
+
+<div class="acciones">
+  <button type="button" class="btn btn-primary" onclick="descargar()">⬇ Descargar respuestas (.txt)</button>
+  <button type="button" class="btn btn-outline" onclick="limpiar()">✖ Limpiar formulario</button>
+</div>
+
+</form>
+
+<script>
+var tamano = "";
+var respuestas = {};
+
+function seleccionarTamano(t) {
+  tamano = t;
+  document.querySelectorAll('#tamano .opcion').forEach(o => o.classList.remove('active'));
+  document.querySelector('#tamano [data-value="'+t+'"]').classList.add('active');
+  respuestas['tamano'] = t === 'micro' ? 'Microempresa (<10 empleados)' : 'PYME (10-250 empleados)';
+  // Mostrar todas las cards que correspondan
+  document.querySelectorAll('[data-section]').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('[data-section="basica"]').forEach(c => c.classList.remove('hidden'));
+  document.querySelectorAll('[data-section="' + t + '"]').forEach(c => c.classList.remove('hidden'));
+  document.querySelectorAll('[data-section="madurez"]').forEach(c => c.classList.remove('hidden'));
+  document.querySelectorAll('[data-section="viabilidad"]').forEach(c => c.classList.remove('hidden'));
+  actualizarProgreso();
+}
+
+function toggleOpcion(el) {
+  el.classList.toggle('active');
+}
+
+function toggleRadio(el, grupo) {
+  document.querySelectorAll('[data-radio="'+grupo+'"] .opcion').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function selectMadurez(el) {
+  document.querySelectorAll('.madurez-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  respuestas['nivel_madurez'] = el.querySelector('.nivel').textContent.trim() + ' — ' + el.querySelector('.desc').textContent.trim();
+}
+
+function setEscala(el, grupo) {
+  document.querySelectorAll('[data-escala="'+grupo+'"] .num').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function actualizarProgreso() {
+  var visibles = document.querySelectorAll('.card:not(.hidden)').length;
+  var total = document.querySelectorAll('.card').length;
+  document.getElementById('bar').style.width = (visibles / total * 100) + '%';
+}
+
+function recolectar() {
+  var r = Object.assign({}, respuestas);
+  r['empresa'] = document.getElementById('empresa').value;
+  r['sector'] = document.getElementById('sector').value;
+  r['herramientas'] = [...document.querySelectorAll('[data-multi="herramientas"] .active')].map(e => e.textContent.trim()).join(', ');
+  r['flujo_info'] = [...document.querySelectorAll('[data-radio="flujo"] .active')].map(e => e.textContent.trim()).join(', ');
+  r['estado_datos'] = [...document.querySelectorAll('[data-multi="datos"] .active')].map(e => e.textContent.trim()).join(', ');
+
+  if (tamano === 'micro') {
+    r['proceso_critico'] = document.getElementById('micro-proceso').value;
+    r['prioridad'] = [...document.querySelectorAll('[data-radio="micro-prioridad"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['presupuesto'] = [...document.querySelectorAll('[data-radio="micro-presupuesto"] .active')].map(e => e.textContent.trim()).join(', ');
+  } else {
+    r['canales'] = [...document.querySelectorAll('[data-multi="canales"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['metricas'] = [...document.querySelectorAll('[data-multi="metricas"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['ads'] = [...document.querySelectorAll('[data-multi="ads"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['operacion'] = [...document.querySelectorAll('[data-radio="operacion"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['retos'] = [...document.querySelectorAll('[data-multi="retos"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['contabilidad'] = [...document.querySelectorAll('[data-radio="contabilidad"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['rentabilidad'] = [...document.querySelectorAll('[data-escala="rentabilidad"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['ti_equipo'] = [...document.querySelectorAll('[data-radio="ti"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['ti_capacidad'] = [...document.querySelectorAll('[data-escala="ti-cap"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['automatizar'] = document.getElementById('pys-automatizar').value;
+  }
+  r['presupuesto_final'] = [...document.querySelectorAll('[data-radio="presupuesto-final"] .active')].map(e => e.textContent.trim()).join(', ');
+  r['comentarios'] = document.getElementById('comentarios').value;
+  return r;
+}
+
+function descargar() {
+  var r = recolectar();
+  var txt = '=== DIAGNÓSTICO DE IA ===\n\n';
+  txt += 'Fecha: ' + new Date().toLocaleDateString('es') + '\n';
+  txt += 'Tamaño empresa: ' + r.tamano + '\n';
+  txt += 'Empresa: ' + (r.empresa || '(no especificado)') + '\n';
+  txt += 'Sector: ' + (r.sector || '(no especificado)') + '\n\n';
+  txt += '--- ECOSISTEMA TECNOLÓGICO ---\n';
+  txt += 'Herramientas: ' + (r.herramientas || '(ninguna seleccionada)') + '\n';
+  txt += 'Flujo de información: ' + (r.flujo_info || '-') + '\n';
+  txt += 'Estado de datos: ' + (r.estado_datos || '-') + '\n\n';
+  txt += '--- NIVEL DE MADUREZ IA ---\n';
+  txt += (r.nivel_madurez || '(no seleccionado)') + '\n\n';
+
+  if (tamano === 'micro') {
+    txt += '--- PROCESOS Y PRIORIDADES ---\n';
+    txt += 'Proceso que consume más horas: ' + (r.proceso_critico || '-') + '\n';
+    txt += 'Prioridad de automatización: ' + (r.prioridad || '-') + '\n';
+    txt += 'Presupuesto estimado: ' + (r.presupuesto || '-') + '\n\n';
+  } else {
+    txt += '--- MERCADEO Y VENTAS ---\n';
+    txt += 'Canales: ' + (r.canales || '-') + '\n';
+    txt += 'Métricas: ' + (r.metricas || '-') + '\n';
+    txt += 'Publicidad: ' + (r.ads || '-') + '\n\n';
+    txt += '--- OPERACIONES ---\n';
+    txt += 'Gestión de operaciones: ' + (r.operacion || '-') + '\n';
+    txt += 'Retos operativos: ' + (r.retos || '-') + '\n\n';
+    txt += '--- FINANZAS ---\n';
+    txt += 'Contabilidad: ' + (r.contabilidad || '-') + '\n';
+    txt += 'Visibilidad rentabilidad: ' + (r.rentabilidad || '-') + '\n\n';
+    txt += '--- TECNOLOGÍA ---\n';
+    txt += 'Equipo TI: ' + (r.ti_equipo || '-') + '\n';
+    txt += 'Capacidad TI: ' + (r.ti_capacidad || '-') + '\n\n';
+    txt += '--- PROCESOS A AUTOMATIZAR ---\n';
+    txt += (r.automatizar || '-') + '\n\n';
+  }
+
+  txt += '--- PRESUPUESTO ---\n';
+  txt += 'Presupuesto mensual: ' + (r.presupuesto_final || '-') + '\n\n';
+  txt += 'Comentarios: ' + (r.comentarios || '-') + '\n';
+  txt += '\n=== FIN DEL DIAGNÓSTICO ===';
+
+  var blob = new Blob([txt], {type: 'text/plain'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'diagnostico_ia_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+}
+
+function limpiar() {
+  if (!confirm('¿Limpiar todas las respuestas?')) return;
+  document.querySelectorAll('input').forEach(i => i.value = '');
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.active').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+  document.getElementById('card-tamano').classList.remove('hidden');
+  tamano = '';
+  actualizarProgreso();
+}
+
+// Inicializar: mostrar solo la card de tamaño
+document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+document.getElementById('card-tamano').classList.remove('hidden');
+</script>
+</div>
+</body>
+</html>
