@@ -154,26 +154,19 @@
     <textarea id="micro-proceso" rows="2" placeholder="Ej: responder consultas de clientes, gestionar pedidos, conciliar pagos..."></textarea>
   </div>
   <div style="margin-bottom:10px;">
-    <label>5. ¿Cuál de estos te gustaría automatizar primero?</label>
-    <div class="opciones" data-radio="micro-prioridad">
-      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Atención al cliente / consultas</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Marketing y contenido para redes</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Gestión de pedidos / inventario</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Contabilidad / facturación</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-prioridad')">Otro</div>
-    </div>
-  </div>
-  <h2>C. Viabilidad</h2>
-  <div style="margin-bottom:10px;">
-    <label>6. ¿Qué presupuesto estimado podrías destinar a herramientas de IA al mes?</label>
-    <div class="opciones" data-radio="micro-presupuesto">
-      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">$0 — solo herramientas gratuitas</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">Hasta $30/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">$30-$100/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'micro-presupuesto')">Aún no tengo presupuesto definido</div>
-    </div>
-  </div>
-</div>
+    <label>5. ¿Cuáles de estos te gustaría automatizar? <span class="tag">(puedes marcar varias)</span></label>
+        <div class="opciones" data-multi="micro-prioridad">
+          <div class="opcion" onclick="toggleOpcion(this)">Atención al cliente / consultas</div>
+          <div class="opcion" onclick="toggleOpcion(this)">Marketing y contenido para redes</div>
+          <div class="opcion" onclick="toggleOpcion(this)">Gestión de pedidos / inventario</div>
+          <div class="opcion" onclick="toggleOpcion(this)">Contabilidad / facturación</div>
+          <div class="opcion" onclick="toggleOpcion(this)">Otro</div>
+        </div>
+        <div style="margin-top:4px;">
+          <input type="text" id="micro-otro" placeholder="Si marcaste Otro, descríbelo aquí" style="width:100%;">
+        </div>
+          </div>
+        </div>
 
 <!-- PREGUNTAS PYME (salen si pyme) – version generalizada de MountainFood -->
 <div class="card hidden" data-section="pyme">
@@ -305,18 +298,88 @@
   </div>
 </div>
 
+</div>
+</div>
+
+<!-- DETALLE DE PROCESOS (opcional) -->
+<div class="card hidden" data-section="detalle-procesos">
+  <h2>H. Detalle de procesos <span style="font-size:10px;color:#8B8176;font-weight:400;">(opcional, 2-3 min)</span></h2>
+  <p style="font-size:12px;color:#5C5348;margin-bottom:4px;">Si quieres una propuesta mas precisa, marca los procesos que aplican en cada area.</p>
+  <div style="margin-bottom:8px;">
+    <label>¿Quieres detallar tus procesos?</label>
+    <div class="opciones" id="detalle-toggle" data-radio="detalle">
+      <div class="opcion" onclick="toggleRadio(this,'detalle');toggleDetalle(true)">Sí, agregar detalle de procesos</div>
+      <div class="opcion" onclick="toggleRadio(this,'detalle');toggleDetalle(false)">No por ahora</div>
+    </div>
+  </div>
+  <div id="detalle-areas" class="hidden">
+    <h3 style="font-size:14px;margin-top:6px;">📣 Marketing</h3>
+    <div style="margin-bottom:4px;">
+      <div class="opciones" data-multi="mkt-procesos">
+        <div class="opcion" onclick="toggleOpcion(this)">Publicidad en redes</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Gestion de campanas</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Creacion de contenido</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Email marketing</div>
+        <div class="opcion" onclick="toggleOpcion(this)">SEO / busqueda</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Reporting / analisis</div>
+        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
+      </div>
+    </div>
+    <h3 style="font-size:14px;margin-top:6px;">💰 Ventas</h3>
+    <div style="margin-bottom:4px;">
+      <div class="opciones" data-multi="ventas-procesos">
+        <div class="opcion" onclick="toggleOpcion(this)">Gestion de leads</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Cotizacion / presupuestos</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Negociacion / cierre</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Postventa / seguimiento</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Gestion de CRM</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Facturacion / cobro</div>
+        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
+      </div>
+    </div>
+    <h3 style="font-size:14px;margin-top:6px;">🔧 Operaciones / Entrega</h3>
+    <div style="margin-bottom:4px;">
+      <div class="opciones" data-multi="ops-procesos">
+        <div class="opcion" onclick="toggleOpcion(this)">Gestion de pedidos</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Logistica / entrega</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Produccion / fabricacion</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Control de calidad</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Inventario / insumos</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Servicio / soporte al cliente</div>
+        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
+      </div>
+    </div>
+    <h3 style="font-size:14px;margin-top:6px;">📋 Administracion</h3>
+    <div style="margin-bottom:4px;">
+      <div class="opciones" data-multi="adm-procesos">
+        <div class="opcion" onclick="toggleOpcion(this)">Facturacion / cobranza</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Contabilidad / libros</div>
+        <div class="opcion" onclick="toggleOpcion(this)">RRHH / nominas</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Legal / documentacion</div>
+        <div class="opcion" onclick="toggleOpcion(this)">Reporting gerencial</div>
+        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
+      </div>
+    </div>
+    <div style="margin-bottom:6px;">
+      <label>Comentarios sobre tus procesos <span class="tag">(opcional)</span></label>
+      <textarea id="detalle-comentarios" rows="2" placeholder="Algo mas que quieras compartir..."></textarea>
+    </div>
+  </div>
+</div>
+
 <!-- VIABILIDAD -->
 <div class="card hidden" data-section="viabilidad">
-  <h2>G. Viabilidad y presupuesto</h2>
-  <div style="margin-bottom:10px;">
-    <label>¿Qué presupuesto mensual podrías destinar a herramientas de IA?</label>
-    <div class="opciones" data-radio="presupuesto-final">
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0 — solo herramientas gratuitas</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0–$30/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$30–$100/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Más de $100/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Aún sin presupuesto definido</div>
-    </div>
+  <h2>Viabilidad y presupuesto</h2>
+    <div style="margin-bottom:10px;">
+      <label>¿Qué presupuesto mensual (en pesos colombianos) podrías destinar a herramientas de IA?</label>
+      <div class="opciones" data-radio="presupuesto-final">
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0 — solo herramientas gratuitas</div>
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Hasta $100.000/mes</div>
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$100.000–$300.000/mes</div>
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$300.000–$1.000.000/mes</div>
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Más de $1.000.000/mes</div>
+        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Aún sin presupuesto definido</div>
+      </div>
   </div>
   <div style="margin-bottom:10px;">
     <label>Comentarios adicionales</label>
@@ -345,7 +408,8 @@ function seleccionarTamano(t) {
   document.querySelectorAll('[data-section="basica"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="' + t + '"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="madurez"]').forEach(c => c.classList.remove('hidden'));
-  document.querySelectorAll('[data-section="viabilidad"]').forEach(c => c.classList.remove('hidden'));
+    document.querySelectorAll('[data-section="detalle-procesos"]').forEach(c => c.classList.remove('hidden'));
+    document.querySelectorAll('[data-section="viabilidad"]').forEach(c => c.classList.remove('hidden'));
   actualizarProgreso();
 }
 
@@ -369,6 +433,12 @@ function setEscala(el, grupo) {
   el.classList.add('active');
 }
 
+function toggleDetalle(show) {
+  var el = document.getElementById('detalle-areas');
+  if (show) el.classList.remove('hidden'); else el.classList.add('hidden');
+  actualizarProgreso();
+}
+
 function actualizarProgreso() {
   var visibles = document.querySelectorAll('.card:not(.hidden)').length;
   var total = document.querySelectorAll('.card').length;
@@ -385,9 +455,9 @@ function recolectar() {
 
   if (tamano === 'micro') {
     r['proceso_critico'] = document.getElementById('micro-proceso').value;
-    r['prioridad'] = [...document.querySelectorAll('[data-radio="micro-prioridad"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['presupuesto'] = [...document.querySelectorAll('[data-radio="micro-presupuesto"] .active')].map(e => e.textContent.trim()).join(', ');
-  } else {
+    r['prioridad'] = [...document.querySelectorAll('[data-multi="micro-prioridad"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['micro_otro'] = document.getElementById('micro-otro').value;
+      } else {
     r['canales'] = [...document.querySelectorAll('[data-multi="canales"] .active')].map(e => e.textContent.trim()).join(', ');
     r['metricas'] = [...document.querySelectorAll('[data-multi="metricas"] .active')].map(e => e.textContent.trim()).join(', ');
     r['ads'] = [...document.querySelectorAll('[data-multi="ads"] .active')].map(e => e.textContent.trim()).join(', ');
@@ -401,7 +471,13 @@ function recolectar() {
   }
   r['presupuesto_final'] = [...document.querySelectorAll('[data-radio="presupuesto-final"] .active')].map(e => e.textContent.trim()).join(', ');
   r['comentarios'] = document.getElementById('comentarios').value;
-  return r;
+    r['detalle_procesos'] = [...document.querySelectorAll('[data-radio="detalle"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['mkt_procesos'] = [...document.querySelectorAll('[data-multi="mkt-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['ventas_procesos'] = [...document.querySelectorAll('[data-multi="ventas-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['ops_procesos'] = [...document.querySelectorAll('[data-multi="ops-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['adm_procesos'] = [...document.querySelectorAll('[data-multi="adm-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['detalle_comentarios'] = document.getElementById('detalle-comentarios').value;
+    return r;
 }
 
 function descargar() {
@@ -422,7 +498,8 @@ function descargar() {
     txt += '--- PROCESOS Y PRIORIDADES ---\n';
     txt += 'Proceso que consume más horas: ' + (r.proceso_critico || '-') + '\n';
     txt += 'Prioridad de automatización: ' + (r.prioridad || '-') + '\n';
-    txt += 'Presupuesto estimado: ' + (r.presupuesto || '-') + '\n\n';
+    txt += 'Otro (prioridad): ' + (r.micro_otro || '-') + '\n';
+    txt += 'Presupuesto estimado: (ver sección Viabilidad)' + '\n\n';
   } else {
     txt += '--- MERCADEO Y VENTAS ---\n';
     txt += 'Canales: ' + (r.canales || '-') + '\n';
@@ -443,8 +520,16 @@ function descargar() {
 
   txt += '--- PRESUPUESTO ---\n';
   txt += 'Presupuesto mensual: ' + (r.presupuesto_final || '-') + '\n\n';
-  txt += 'Comentarios: ' + (r.comentarios || '-') + '\n';
-  txt += '\n=== FIN DEL DIAGNÓSTICO ===';
+  txt += 'Comentarios: ' + (r.comentarios || '-') + '\n\n';
+    if (r.detalle_procesos && r.detalle_procesos.indexOf('Sí') > -1) {
+      txt += '--- DETALLE DE PROCESOS ---\n';
+      txt += 'Marketing: ' + (r.mkt_procesos || '-') + '\n';
+      txt += 'Ventas: ' + (r.ventas_procesos || '-') + '\n';
+      txt += 'Operaciones: ' + (r.ops_procesos || '-') + '\n';
+      txt += 'Administración: ' + (r.adm_procesos || '-') + '\n';
+      txt += 'Comentarios procesos: ' + (r.detalle_comentarios || '-') + '\n';
+    }
+    txt += '\n=== FIN DEL DIAGNÓSTICO ===';
 
   var blob = new Blob([txt], {type: 'text/plain'});
   var a = document.createElement('a');
