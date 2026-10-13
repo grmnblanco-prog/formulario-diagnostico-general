@@ -93,11 +93,11 @@
 <div class="card hidden" data-section="basica">
   <h2>Datos de la empresa</h2>
   <div style="margin-bottom:10px;">
-    <label>Nombre de la empresa <span class="tag">(o persona)</span></label>
+    <label>1. Nombre de la empresa <span class="tag">(o persona)</span></label>
     <input type="text" id="empresa" placeholder="Ej: Mi Empresa SAS">
   </div>
   <div style="margin-bottom:10px;">
-    <label>Sector / industria</label>
+    <label>2. Sector / industria</label>
     <select id="sector">
       <option value="">Selecciona...</option>
       <option>Alimentos y bebidas</option>
@@ -120,7 +120,7 @@
 <div class="card hidden" data-section="basica">
   <h2>A. Ecosistema tecnológico</h2>
   <div style="margin-bottom:10px;">
-    <label>1. ¿Qué herramientas digitales usan hoy?</label>
+    <label>3. ¿Qué herramientas digitales usan hoy?</label>
     <div class="opciones" data-multi="herramientas">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">WhatsApp</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Correo electrónico</div>
@@ -132,7 +132,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>2. ¿Cómo fluye la información entre esas herramientas?</label>
+    <label>4. ¿Cómo fluye la información entre esas herramientas?</label>
     <div class="opciones" data-radio="flujo">
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">Integración automática (los sistemas se hablan solos)</div>
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">Exportaciones e importaciones manuales</div>
@@ -141,7 +141,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>3. Estado actual de sus datos</label>
+    <label>5. Estado actual de sus datos</label>
     <div class="opciones" data-multi="datos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Dispersos: en hojas, correos y plataformas separadas</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Centralizados con visibilidad consolidada</div>
@@ -150,7 +150,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>4. ¿Qué asistentes o ecosistemas de IA usan hoy?</label>
+    <label>6. ¿Qué asistentes o ecosistemas de IA usan hoy?</label>
     <div class="opciones" data-multi="ia-ecosistemas">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">ChatGPT</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Google Gemini</div>
@@ -167,7 +167,7 @@
 <div class="card hidden" data-section="micro">
   <h2>B. Procesos y prioridades</h2>
   <div style="margin-bottom:10px;">
-    <label>B.1. 4. ¿Qué áreas manejas en tu negocio?</label>
+    <label>7. ¿Qué áreas manejas en tu negocio?</label>
     <div class="opciones" data-multi="micro-areas">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Mercadeo y Ventas</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Operaciones</div>
@@ -177,7 +177,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>B.2. 5. ¿Qué proceso o procesos rutinarios consumen más horas y te gustaría automatizar?</label>
+    <label>8. ¿Qué proceso o procesos rutinarios consumen más horas y te gustaría automatizar?</label>
     <textarea id="micro-automatizar" rows="3" placeholder="Ej: atender consultas de clientes por WhatsApp, generar cotizaciones a mano, conciliar pagos en Excel..."></textarea>
   </div>
 </div>
@@ -187,7 +187,7 @@
   <h2>B. Mercadeo y Ventas</h2>
   <div style="margin-bottom:6px;">
       <div style="margin-bottom:6px;">
-    <label>B.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <label>9. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="mv-procesos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Prospección de leads</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Cotización y presupuestos</div>
@@ -198,7 +198,7 @@
     </div>
   </div>
   <div style="margin-bottom:6px;">
-    <label>B.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
+    <label>10. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-mv-proceso" onchange="autoFillPasos('mv',this.value)">
       <option value="">Selecciona...</option>
       <option value="prospeccion">Prospección de leads</option>
@@ -211,21 +211,21 @@
     </select>
 
   <div style="margin-bottom:6px;">
-    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <label>11. Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-mv-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>B.3. ¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>12. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-mv-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <label>13. ¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-mv-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
   <h2>C. Operaciones</h2>
   <div style="margin-bottom:6px;">
       <div style="margin-bottom:6px;">
-    <label>C.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <label>14. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="ops-procesos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de pedidos</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Logística y entregas</div>
@@ -236,7 +236,7 @@
     </div>
   </div>
   <div style="margin-bottom:6px;">
-    <label>C.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
+    <label>15. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-ops-proceso" onchange="autoFillPasos('ops',this.value)">
       <option value="">Selecciona...</option>
       <option value="pedidos">Gestión de pedidos</option>
@@ -249,21 +249,21 @@
     </select>
 
   <div style="margin-bottom:6px;">
-    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <label>16. Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-ops-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>C.1. ¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>17. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-ops-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <label>18. ¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-ops-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
   <h2>D. Finanzas y Contabilidad</h2>
   <div style="margin-bottom:6px;">
       <div style="margin-bottom:6px;">
-    <label>D.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <label>19. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="fin-procesos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Facturación</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Conciliación bancaria</div>
@@ -273,7 +273,7 @@
     </div>
   </div>
   <div style="margin-bottom:6px;">
-    <label>D.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
+    <label>20. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-fin-proceso" onchange="autoFillPasos('fin',this.value)">
       <option value="">Selecciona...</option>
       <option value="facturacion">Facturación</option>
@@ -285,21 +285,21 @@
     </select>
 
   <div style="margin-bottom:6px;">
-    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <label>21. Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-fin-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>D.1. ¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>22. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-fin-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <label>23. ¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-fin-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
   <h2>E. RRHH</h2>
   <div style="margin-bottom:6px;">
       <div style="margin-bottom:6px;">
-    <label>E.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <label>24. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="rrhh-procesos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Selección y contratación</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Nómina y beneficios</div>
@@ -309,7 +309,7 @@
     </div>
   </div>
   <div style="margin-bottom:6px;">
-    <label>E.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
+    <label>25. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-rrhh-proceso" onchange="autoFillPasos('rrhh',this.value)">
       <option value="">Selecciona...</option>
       <option value="seleccion">Selección y contratación</option>
@@ -321,21 +321,21 @@
     </select>
 
   <div style="margin-bottom:6px;">
-    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <label>26. Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>E.1. ¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>27. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-rrhh-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <label>28. ¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-rrhh-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
   <h2>F. Dirección Estratégica</h2>
   <div style="margin-bottom:6px;">
       <div style="margin-bottom:6px;">
-    <label>F.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <label>29. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="dir-procesos">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Planeación anual</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Reporting gerencial</div>
@@ -345,7 +345,7 @@
     </div>
   </div>
   <div style="margin-bottom:6px;">
-    <label>F.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
+    <label>30. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-dir-proceso" onchange="autoFillPasos('dir',this.value)">
       <option value="">Selecciona...</option>
       <option value="planeacion">Planeación anual</option>
@@ -357,15 +357,15 @@
     </select>
 
   <div style="margin-bottom:6px;">
-    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <label>31. Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-dir-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>F.1. ¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>32. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-dir-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <label>33. ¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-dir-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
 </div>
@@ -374,7 +374,7 @@
 <div class="card hidden" data-section="pyme">
   <h2>G. Tecnología y equipo</h2>
   <div style="margin-bottom:10px;">
-    <label>G.1. 9. ¿Cuentan con equipo o persona responsable de TI?</label>
+    <label>34. </label>
     <div class="opciones" data-radio="ti">
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, equipo interno de TI</div>
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, una persona encargada (comparte funciones)</div>
@@ -383,7 +383,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>G.2. 10. Capacidad del equipo para implementar soluciones de IA</label>
+    <label>35. </label>
     <div class="escala" data-escala="ti-cap">
       <div class="num" onclick="setEscala(this,'ti-cap')">1</div>
       <div class="num" onclick="setEscala(this,'ti-cap')">2</div>
@@ -394,7 +394,7 @@
     <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte básico · 5 = equipo con capacidad de integraciones</div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>G.3. 11. ¿Qué infraestructura tecnológica tiene la empresa para evaluar la opción de instalar IA local (modelos ejecutados en sus propios equipos o servidores)?</label>
+    <label>36. </label>
     <div class="opciones" data-multi="infraestructura">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servidor propio en las instalaciones de la empresa</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servicios en la nube (AWS, Azure, Google Cloud)</div>
