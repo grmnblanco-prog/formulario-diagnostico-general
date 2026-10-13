@@ -27,6 +27,10 @@
     border: 1px solid rgba(45,42,36,.08); cursor: pointer; font-size: 12px; background: #fff; transition: .15s;
     max-width: 100%; word-break: break-word;
   }
+  .opcion[data-type="radio"]::before { content: "○"; font-size: 14px; margin-right: 4px; }
+  .opcion[data-type="multi"]::before { content: "□"; font-size: 14px; margin-right: 4px; }
+  .opcion[data-type="radio"].active::before { content: "●"; color: #E8633A; }
+  .opcion[data-type="multi"].active::before { content: "☑"; color: #E8633A; }
   .opcion:hover { border-color: rgba(232,99,58,.2); }
   .opcion input { display: none; }
   .opcion.active { border-color: #E8633A; background: rgba(232,99,58,.06); }
@@ -118,43 +122,43 @@
   <div style="margin-bottom:10px;">
     <label>1. ¿Qué herramientas digitales usan hoy?</label>
     <div class="opciones" data-multi="herramientas">
-      <div class="opcion" onclick="toggleOpcion(this)">WhatsApp</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Correo electrónico</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Redes sociales</div>
-      <div class="opcion" onclick="toggleOpcion(this)">CRM (gestión de clientes)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">ERP / Software contable</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Tienda online / E-commerce</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Solo hojas de cálculo y papel</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">WhatsApp</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Correo electrónico</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Redes sociales</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">CRM (gestión de clientes)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">ERP / Software contable</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Tienda online / E-commerce</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Solo hojas de cálculo y papel</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
     <label>2. ¿Cómo fluye la información entre esas herramientas?</label>
     <div class="opciones" data-radio="flujo">
-      <div class="opcion" onclick="toggleRadio(this,'flujo')">Integración automática (los sistemas se hablan solos)</div>
-      <div class="opcion" onclick="toggleRadio(this,'flujo')">Exportaciones e importaciones manuales</div>
-      <div class="opcion" onclick="toggleRadio(this,'flujo')">Sistemas aislados: los datos se vuelven a capturar</div>
-      <div class="opcion" onclick="toggleRadio(this,'flujo')">No lo sé / no se ha auditado</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">Integración automática (los sistemas se hablan solos)</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">Exportaciones e importaciones manuales</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">Sistemas aislados: los datos se vuelven a capturar</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'flujo')">No lo sé / no se ha auditado</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
     <label>3. Estado actual de sus datos</label>
     <div class="opciones" data-multi="datos">
-      <div class="opcion" onclick="toggleOpcion(this)">Dispersos: en hojas, correos y plataformas separadas</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Centralizados con visibilidad consolidada</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Completos y actualizados (calidad confiable)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Solo exportaciones manuales</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Dispersos: en hojas, correos y plataformas separadas</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Centralizados con visibilidad consolidada</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Completos y actualizados (calidad confiable)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Solo exportaciones manuales</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
     <label>4. ¿Qué asistentes o ecosistemas de IA usan hoy?</label>
     <div class="opciones" data-multi="ia-ecosistemas">
-      <div class="opcion" onclick="toggleOpcion(this)">ChatGPT</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Google Gemini</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Microsoft Copilot</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Claude (Anthropic)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Meta AI</div>
-      <div class="opcion" onclick="toggleOpcion(this)">IA integrada en ERP/CRM</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Ninguno / no sabemos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">ChatGPT</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Google Gemini</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Microsoft Copilot</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Claude (Anthropic)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Meta AI</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">IA integrada en ERP/CRM</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Ninguno / no sabemos</div>
     </div>
   </div>
 </div>
@@ -165,11 +169,11 @@
   <div style="margin-bottom:10px;">
     <label>4. ¿Qué áreas manejas en tu negocio?</label>
     <div class="opciones" data-multi="micro-areas">
-      <div class="opcion" onclick="toggleOpcion(this)">Mercadeo y Ventas</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Operaciones</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Finanzas y Contabilidad</div>
-      <div class="opcion" onclick="toggleOpcion(this)">RRHH</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Dirección Estratégica</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Mercadeo y Ventas</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Operaciones</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Finanzas y Contabilidad</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">RRHH</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Dirección Estratégica</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
@@ -180,109 +184,145 @@
 
 <!-- PREGUNTAS PYME -->
 <div class="card hidden" data-section="pyme">
-
-  <h2>B. Mercadeo y Ventas</h2>
+  <h2>Mercadeo y Ventas</h2>
   <div style="margin-bottom:6px;">
-    <label>4. ¿Cu&aacute;l es tu proceso principal de mercadeo y ventas?</label>
-    <textarea id="pyme-mv-proceso" rows="2" placeholder="Ej: prospecci&oacute;n de leads, cotizaci&oacute;n, cierre, postventa"></textarea>
+    <label>4. Selecciona tu proceso principal de mercadeo y ventas</label>
+    <select id="pyme-mv-proceso" onchange="autoFillPasos('mv',this.value)">
+      <option value="">Selecciona...</option>
+      <option value="prospeccion">Prospección de leads</option>
+      <option value="cotizacion">Cotización y presupuestos</option>
+      <option value="cierre">Cierre de ventas</option>
+      <option value="postventa">Postventa y seguimiento</option>
+      <option value="crm">Gestión de CRM</option>
+      <option value="publicidad">Publicidad y campañas</option>
+      <option value="otro">Otro (personalizado)</option>
+    </select>
   </div>
   <div style="margin-bottom:6px;">
-    <label>Pasos principales (separados por -&gt; )</label>
-    <input type="text" id="pyme-mv-pasos" placeholder="Ej: Lead llega Cotiza Negocia Cierra Factura">
+    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <input type="text" id="pyme-mv-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
-    <textarea id="pyme-mv-cuello" rows="1" placeholder="Ej: en cotizar, porque se hace a mano"></textarea>
+    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <textarea id="pyme-mv-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
-    <textarea id="pyme-mv-mejora" rows="1" placeholder="Ej: que el cliente pueda ver precios sin consultar"></textarea>
+    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <textarea id="pyme-mv-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-
-  <h2>C. Operaciones</h2>
+  <h2>Operaciones</h2>
   <div style="margin-bottom:6px;">
-    <label>5. Proceso principal de operaciones o entrega</label>
-    <textarea id="pyme-ops-proceso" rows="2" placeholder="Ej: gesti&oacute;n de pedidos, log&iacute;stica, producci&oacute;n"></textarea>
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>Pasos principales (separados por -&gt; )</label>
-    <input type="text" id="pyme-ops-pasos" placeholder="Ej: Pedido Prepara entrega Cliente recibe">
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
-    <textarea id="pyme-ops-cuello" rows="1" placeholder="Ej: el inventario no est&aacute; actualizado"></textarea>
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
-    <textarea id="pyme-ops-mejora" rows="1" placeholder="Ej: notificaci&oacute;n autom&aacute;tica cuando el stock baja"></textarea>
-  </div>
-
-  <h2>D. Finanzas y Contabilidad</h2>
-  <div style="margin-bottom:6px;">
-    <label>6. Proceso principal de finanzas o contabilidad</label>
-    <textarea id="pyme-fin-proceso" rows="2" placeholder="Ej: facturaci&oacute;n, conciliaci&oacute;n, cierre contable"></textarea>
+    <label>5. Selecciona tu proceso principal de operaciones</label>
+    <select id="pyme-ops-proceso" onchange="autoFillPasos('ops',this.value)">
+      <option value="">Selecciona...</option>
+      <option value="pedidos">Gestión de pedidos</option>
+      <option value="logistica">Logística y entregas</option>
+      <option value="produccion">Producción / fabricación</option>
+      <option value="calidad">Control de calidad</option>
+      <option value="inventario">Inventario / insumos</option>
+      <option value="soporte">Servicio al cliente / soporte</option>
+      <option value="otro">Otro (personalizado)</option>
+    </select>
   </div>
   <div style="margin-bottom:6px;">
-    <label>Pasos principales (separados por -&gt; )</label>
-    <input type="text" id="pyme-fin-pasos" placeholder="Ej: Venta Factura Cobra Concilia">
+    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <input type="text" id="pyme-ops-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
-    <textarea id="pyme-fin-cuello" rows="1" placeholder="Ej: conciliar pagos toma 2 d&iacute;as"></textarea>
+    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <textarea id="pyme-ops-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
-    <textarea id="pyme-fin-mejora" rows="1" placeholder="Ej: que la conciliaci&oacute;n sea autom&aacute;tica"></textarea>
+    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <textarea id="pyme-ops-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-
-  <h2>E. RRHH</h2>
+  <h2>Finanzas y Contabilidad</h2>
   <div style="margin-bottom:6px;">
-    <label>7. Proceso principal de RRHH</label>
-    <textarea id="pyme-rrhh-proceso" rows="2" placeholder="Ej: selecci&oacute;n, n&oacute;mina, evaluaci&oacute;n de desempe&ntilde;o"></textarea>
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>Pasos principales (separados por -&gt; )</label>
-    <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: Vacante Recibe CVs Entrevista Contrata">
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
-    <textarea id="pyme-rrhh-cuello" rows="1" placeholder="Ej: revisar CVs uno por uno"></textarea>
-  </div>
-  <div style="margin-bottom:6px;">
-    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
-    <textarea id="pyme-rrhh-mejora" rows="1" placeholder="Ej: que un IA preseleccione los mejores perfiles"></textarea>
-  </div>
-
-  <h2>F. Direcci&oacute;n Estrat&eacute;gica</h2>
-  <div style="margin-bottom:6px;">
-    <label>8. Proceso principal de direcci&oacute;n estrat&eacute;gica</label>
-    <textarea id="pyme-dir-proceso" rows="2" placeholder="Ej: planeaci&oacute;n anual, reporting, definici&oacute;n de metas"></textarea>
+    <label>6. Selecciona tu proceso principal de finanzas y contabilidad</label>
+    <select id="pyme-fin-proceso" onchange="autoFillPasos('fin',this.value)">
+      <option value="">Selecciona...</option>
+      <option value="facturacion">Facturación</option>
+      <option value="conciliacion">Conciliación bancaria</option>
+      <option value="cierre">Cierre contable</option>
+      <option value="cobranza">Gestión de cobranza</option>
+      <option value="reporting">Reporting financiero</option>
+      <option value="otro">Otro (personalizado)</option>
+    </select>
   </div>
   <div style="margin-bottom:6px;">
-    <label>Pasos principales (separados por -&gt; )</label>
-    <input type="text" id="pyme-dir-pasos" placeholder="Ej: Diagn&oacute;stico Definir metas Ejecutar Medir">
+    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <input type="text" id="pyme-fin-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
-    <textarea id="pyme-dir-cuello" rows="1" placeholder="Ej: la informaci&oacute;n para decidir est&aacute; dispersa"></textarea>
+    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <textarea id="pyme-fin-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
-    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
-    <textarea id="pyme-dir-mejora" rows="1" placeholder="Ej: un tablero con toda la informaci&oacute;n actualizada"></textarea>
+    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <textarea id="pyme-fin-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-
+  <h2>RRHH</h2>
+  <div style="margin-bottom:6px;">
+    <label>7. Selecciona tu proceso principal de rrhh</label>
+    <select id="pyme-rrhh-proceso" onchange="autoFillPasos('rrhh',this.value)">
+      <option value="">Selecciona...</option>
+      <option value="seleccion">Selección y contratación</option>
+      <option value="nomina">Nómina y beneficios</option>
+      <option value="evaluacion">Evaluación de desempeño</option>
+      <option value="clima">Clima laboral</option>
+      <option value="capacitacion">Capacitación</option>
+      <option value="otro">Otro (personalizado)</option>
+    </select>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: paso1 → paso2 → paso3">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <textarea id="pyme-rrhh-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <textarea id="pyme-rrhh-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
+  </div>
+  <h2>Dirección Estratégica</h2>
+  <div style="margin-bottom:6px;">
+    <label>8. Selecciona tu proceso principal de dirección estratégica</label>
+    <select id="pyme-dir-proceso" onchange="autoFillPasos('dir',this.value)">
+      <option value="">Selecciona...</option>
+      <option value="planeacion">Planeación anual</option>
+      <option value="reporting">Reporting gerencial</option>
+      <option value="metas">Definición de metas / KPIs</option>
+      <option value="mercado">Análisis de mercado</option>
+      <option value="presupuesto">Gestión presupuestal</option>
+      <option value="otro">Otro (personalizado)</option>
+    </select>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
+    <input type="text" id="pyme-dir-pasos" placeholder="Ej: paso1 → paso2 → paso3">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <textarea id="pyme-dir-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
+    <textarea id="pyme-dir-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
+  </div>
 </div>
 
 <!-- G. TECNOLOGIA Y EQUIPO -->
 <div class="card hidden" data-section="pyme">
-  <h2>G. Tecnolog&iacute;a y equipo</h2>
+  <h2>G. Tecnología y equipo</h2>
   <div style="margin-bottom:10px;">
-    <label>9. &iquest;Cuentan con equipo o persona responsable de TI?</label>
+    <label>9. ¿Cuentan con equipo o persona responsable de TI?</label>
     <div class="opciones" data-radio="ti">
-      <div class="opcion" onclick="toggleRadio(this,'ti')">Si, equipo interno de TI</div>
-      <div class="opcion" onclick="toggleRadio(this,'ti')">Si, una persona encargada (comparte funciones)</div>
-      <div class="opcion" onclick="toggleRadio(this,'ti')">Proveedor / consultor externo</div>
-      <div class="opcion" onclick="toggleRadio(this,'ti')">No contamos con soporte TI</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, equipo interno de TI</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, una persona encargada (comparte funciones)</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Proveedor / consultor externo</div>
+      <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">No contamos con soporte TI</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
@@ -294,26 +334,17 @@
       <div class="num" onclick="setEscala(this,'ti-cap')">4</div>
       <div class="num" onclick="setEscala(this,'ti-cap')">5</div>
     </div>
-    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte b&aacute;sico · 5 = equipo con capacidad de integraciones</div>
+    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte básico · 5 = equipo con capacidad de integraciones</div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>11. &iquest;Qu&eacute; tipo de despliegue de IA prefieres o consideras factible?</label>
-    <div class="opciones" data-radio="despliegue">
-      <div class="opcion" onclick="toggleRadio(this,'despliegue')">Cloud / nube (ChatGPT, Gemini, Claude)</div>
-      <div class="opcion" onclick="toggleRadio(this,'despliegue')">Local (modelos en tu PC, sin internet)</div>
-      <div class="opcion" onclick="toggleRadio(this,'despliegue')">H&iacute;brido (parte local, parte cloud)</div>
-      <div class="opcion" onclick="toggleRadio(this,'despliegue')">No lo s&eacute; / no tenemos preferencia</div>
-    </div>
-  </div>
-  <div style="margin-bottom:10px;">
-    <label>12. Presupuesto mensual estimado para herramientas de IA (en pesos colombianos)</label>
-    <div class="opciones" data-radio="presupuesto">
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$0 - solo herramientas gratuitas</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">Hasta $100.000/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$100.000 - $300.000/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$300.000 - $1.000.000/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">M&aacute;s de $1.000.000/mes</div>
-      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">A&uacute;n sin presupuesto definido</div>
+    <label>11. ¿Qué infraestructura tecnológica tiene la empresa para evaluar la opción de instalar IA local (modelos ejecutados en sus propios equipos o servidores)?</label>
+    <div class="opciones" data-multi="infraestructura">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servidor propio en las instalaciones de la empresa</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servicios en la nube (AWS, Azure, Google Cloud)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Equipos con características apropiadas (procesador, RAM, almacenamiento, VRAM)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Equipos estándar de oficina (sin capacidad para IA local)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">No contamos con infraestructura para IA local</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">No lo sé / necesito asesoría</div>
     </div>
   </div>
 </div>
@@ -322,19 +353,19 @@
   <h2>¿En qué nivel de IA está tu organización hoy?</h2>
   <p style="font-size:12px;color:#5C5348;margin-bottom:8px;">Selecciona el que mejor describa tu situación actual.</p>
   <div class="madurez-cards" data-radio="madurez">
-    <div class="madurez-card" onclick="selectMadurez(this)">
+    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
       <div class="nivel">N1 — Asistido</div>
       <div class="desc">Usamos ChatGPT, Claude u otras IAs en el navegador. Sin integraciones.</div>
     </div>
-    <div class="madurez-card" onclick="selectMadurez(this)">
+    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
       <div class="nivel">N2 — Guiado</div>
       <div class="desc">Tenemos herramientas conectadas entre sí y algunas automatizaciones básicas.</div>
     </div>
-    <div class="madurez-card" onclick="selectMadurez(this)">
+    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
       <div class="nivel">N3 — Automatizado</div>
       <div class="desc">Varios procesos se ejecutan solos y los supervisamos.</div>
     </div>
-    <div class="madurez-card" onclick="selectMadurez(this)">
+    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
       <div class="nivel">N4 — Multi-agente</div>
       <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
     </div>
@@ -386,6 +417,22 @@ function actualizarProgreso() {
   document.getElementById('bar').style.width = (visibles / total * 100) + '%';
 }
 
+
+function autoFillPasos(area, value) {
+  var stepsMap = {
+    mv: {"prospeccion": "Lead entra → Se califica → Se asigna → Se contacta", "cotizacion": "Solicitud → Calcula precio → Envía propuesta → Negocia → Cierra", "cierre": "Propuesta aceptada → Contrato → Pago inicial → Ejecuta", "postventa": "Cliente recibe → Encuesta → Soporte → Fidelización", "crm": "Contacto → Registro → Segmenta → Campaña → Reporta", "publicidad": "Brief → Crea contenido → Publica → Mide → Optimiza", "otro": ""},
+    ops: {"pedidos": "Pedido entra → Verifica stock → Prepara → Despacha → Confirma", "logistica": "Solicitud de envío → Alista → Ruta → Entrega → Confirma", "produccion": "Insumos → Proceso → Control calidad → Empaque → Almacena", "calidad": "Muestra → Inspecciona → Mide → Reporta → Aprueba/Rechaza", "inventario": "Recepción → Registra → Almacena → Actualiza → Reporta", "soporte": "Ticket abre → Clasifica → Resuelve → Cierra → Encuesta", "otro": ""},
+    fin: {"facturacion": "Venta → Genera factura → Envía → Registra → Archiva", "conciliacion": "Exporta movimientos → Compara → Ajusta → Concilia → Reporta", "cierre": "Revisa cuentas → Ajusta → Calcula impuestos → Cierra mes → Reporta", "cobranza": "Factura vence → Recuerda → Gestiona → Recibe → Concilia", "reporting": "Recopila datos → Clasifica → Calcula → Genera informe → Presenta", "otro": ""},
+    rrhh: {"seleccion": "Vacante → Publica → Recibe CVs → Preselecciona → Entrevista → Contrata", "nomina": "Registra novedades → Calcula → Genera nómina → Paga → Reporta", "evaluacion": "Define metas → Evalúa → Retroalimenta → Califica → Archiva", "clima": "Diseña encuesta → Aplica → Analiza → Reporta → Plan de acción", "capacitacion": "Detecta necesidad → Diseña → Ejecuta → Evalúa → Certifica", "otro": ""},
+    dir: {"planeacion": "Diagnóstico → Define objetivos → Planifica → Ejecuta → Mide", "reporting": "Recopila datos → Analiza → Prepara informe → Presenta → Decide", "metas": "Define KPI → Comunica → Da seguimiento → Evalúa → Ajusta", "mercado": "Investiga → Analiza competencia → Identifica oportunidades → Reporta", "presupuesto": "Proyecta ingresos → Estima gastos → Asigna → Ejecuta → Controla", "otro": ""}
+  };
+  var input = document.getElementById('pyme-' + area + '-pasos');
+  if (stepsMap[area] && stepsMap[area][value] !== undefined) {
+    input.value = stepsMap[area][value];
+    if (value === 'otro') input.value = '';
+  }
+}
+
 function recolectar() {
   var r = Object.assign({}, respuestas);
   r['empresa'] = document.getElementById('empresa').value;
@@ -421,8 +468,7 @@ function recolectar() {
     r['dir_mejora'] = document.getElementById('pyme-dir-mejora').value;
     r['ti_equipo'] = [...document.querySelectorAll('[data-radio="ti"] .active')].map(e => e.textContent.trim()).join(', ');
     r['ti_capacidad'] = [...document.querySelectorAll('[data-escala="ti-cap"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['despliegue'] = [...document.querySelectorAll('[data-radio="despliegue"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['presupuesto'] = [...document.querySelectorAll('[data-radio="presupuesto"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['infraestructura'] = [...document.querySelectorAll('[data-multi="infraestructura"] .active')].map(e => e.textContent.trim()).join(', ');
   }
   r['comentarios'] = document.getElementById('comentarios').value;
   return r;
@@ -476,8 +522,7 @@ function descargar() {
     txt += '--- TECNOLOGIA Y EQUIPO ---\n';
     txt += 'Equipo TI: ' + (r.ti_equipo || '-') + '\n';
     txt += 'Capacidad TI: ' + (r.ti_capacidad || '-') + '\n';
-    txt += 'Despliegue: ' + (r.despliegue || '-') + '\n';
-    txt += 'Presupuesto: ' + (r.presupuesto || '-') + '\n\n';
+
   }
 
   txt += 'Comentarios: ' + (r.comentarios || '-') + '\n';
