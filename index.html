@@ -91,7 +91,7 @@
 
 <!-- Sección 0 – Datos de la empresa -->
 <div class="card hidden" data-section="basica">
-  <h2>0. Datos de la empresa</h2>
+  <h2>Datos de la empresa</h2>
   <div style="margin-bottom:10px;">
     <label>Nombre de la empresa <span class="tag">(o persona)</span></label>
     <input type="text" id="empresa" placeholder="Ej: Mi Empresa SAS">
@@ -167,7 +167,7 @@
 <div class="card hidden" data-section="micro">
   <h2>B. Procesos y prioridades</h2>
   <div style="margin-bottom:10px;">
-    <label>4. ¿Qué áreas manejas en tu negocio?</label>
+    <label>B.1. 4. ¿Qué áreas manejas en tu negocio?</label>
     <div class="opciones" data-multi="micro-areas">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Mercadeo y Ventas</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Operaciones</div>
@@ -177,7 +177,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>5. ¿Qué proceso o procesos rutinarios consumen más horas y te gustaría automatizar?</label>
+    <label>B.2. 5. ¿Qué proceso o procesos rutinarios consumen más horas y te gustaría automatizar?</label>
     <textarea id="micro-automatizar" rows="3" placeholder="Ej: atender consultas de clientes por WhatsApp, generar cotizaciones a mano, conciliar pagos en Excel..."></textarea>
   </div>
 </div>
@@ -201,12 +201,12 @@
     <label>B.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-mv-proceso" onchange="autoFillPasos('mv',this.value)">
       <option value="">Selecciona...</option>
-      <option value="prospeccion_de_leads">Prospección de leads</option>
-      <option value="cotizacion_y_presupu">Cotización y presupuestos</option>
-      <option value="cierre_de_ventas">Cierre de ventas</option>
-      <option value="postventa_y_seguimie">Postventa y seguimiento</option>
-      <option value="gestion_de_crm">Gestión de CRM</option>
-      <option value="publicidad_y_campana">Publicidad y campañas</option>
+      <option value="prospeccion">Prospección de leads</option>
+      <option value="cotizacion">Cotización y presupuestos</option>
+      <option value="cierre">Cierre de ventas</option>
+      <option value="postventa">Postventa y seguimiento</option>
+      <option value="crm">Gestión de CRM</option>
+      <option value="publicidad">Publicidad y campañas</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
 
@@ -215,7 +215,7 @@
     <input type="text" id="pyme-mv-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>B.3. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-mv-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
@@ -239,12 +239,12 @@
     <label>C.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-ops-proceso" onchange="autoFillPasos('ops',this.value)">
       <option value="">Selecciona...</option>
-      <option value="gestion_de_pedidos">Gestión de pedidos</option>
-      <option value="logistica_y_entregas">Logística y entregas</option>
-      <option value="produccion___fabrica">Producción / fabricación</option>
-      <option value="control_de_calidad">Control de calidad</option>
-      <option value="inventario___insumos">Inventario / insumos</option>
-      <option value="servicio_al_cliente_">Servicio al cliente / soporte</option>
+      <option value="pedidos">Gestión de pedidos</option>
+      <option value="logistica">Logística y entregas</option>
+      <option value="produccion">Producción / fabricación</option>
+      <option value="calidad">Control de calidad</option>
+      <option value="inventario">Inventario / insumos</option>
+      <option value="soporte">Servicio al cliente / soporte</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
 
@@ -253,7 +253,7 @@
     <input type="text" id="pyme-ops-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>C.1. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-ops-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
@@ -277,10 +277,10 @@
     <select id="pyme-fin-proceso" onchange="autoFillPasos('fin',this.value)">
       <option value="">Selecciona...</option>
       <option value="facturacion">Facturación</option>
-      <option value="conciliacion_bancari">Conciliación bancaria</option>
-      <option value="cierre_contable">Cierre contable</option>
-      <option value="gestion_de_cobranza">Gestión de cobranza</option>
-      <option value="reporting_financiero">Reporting financiero</option>
+      <option value="conciliacion">Conciliación bancaria</option>
+      <option value="cierre_2">Cierre contable</option>
+      <option value="cobranza">Gestión de cobranza</option>
+      <option value="reporting">Reporting financiero</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
 
@@ -289,7 +289,7 @@
     <input type="text" id="pyme-fin-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>D.1. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-fin-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
@@ -312,10 +312,10 @@
     <label>E.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-rrhh-proceso" onchange="autoFillPasos('rrhh',this.value)">
       <option value="">Selecciona...</option>
-      <option value="seleccion_y_contrata">Selección y contratación</option>
-      <option value="nomina_y_beneficios">Nómina y beneficios</option>
-      <option value="evaluacion_de_desemp">Evaluación de desempeño</option>
-      <option value="clima_laboral">Clima laboral</option>
+      <option value="seleccion">Selección y contratación</option>
+      <option value="nomina">Nómina y beneficios</option>
+      <option value="evaluacion">Evaluación de desempeño</option>
+      <option value="clima">Clima laboral</option>
       <option value="capacitacion">Capacitación</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
@@ -325,7 +325,7 @@
     <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>E.1. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-rrhh-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
@@ -348,11 +348,11 @@
     <label>F.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-dir-proceso" onchange="autoFillPasos('dir',this.value)">
       <option value="">Selecciona...</option>
-      <option value="planeacion_anual">Planeación anual</option>
-      <option value="reporting_gerencial">Reporting gerencial</option>
-      <option value="definicion_de_metas_">Definición de metas / KPIs</option>
-      <option value="analisis_de_mercado">Análisis de mercado</option>
-      <option value="gestion_presupuestal">Gestión presupuestal</option>
+      <option value="planeacion">Planeación anual</option>
+      <option value="reporting_g">Reporting gerencial</option>
+      <option value="metas">Definición de metas / KPIs</option>
+      <option value="mercado">Análisis de mercado</option>
+      <option value="presupuesto">Gestión presupuestal</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
 
@@ -361,7 +361,7 @@
     <input type="text" id="pyme-dir-pasos" placeholder="Ej: paso1 → paso2 → paso3">
   </div>
   <div style="margin-bottom:6px;">
-    <label>¿Dónde se pierde más tiempo o hay errores?</label>
+    <label>F.1. ¿Dónde se pierde más tiempo o hay errores?</label>
     <textarea id="pyme-dir-cuello" rows="1" placeholder="Ej: ahí se traba porque..."></textarea>
   </div>
   <div style="margin-bottom:6px;">
@@ -374,7 +374,7 @@
 <div class="card hidden" data-section="pyme">
   <h2>G. Tecnología y equipo</h2>
   <div style="margin-bottom:10px;">
-    <label>9. ¿Cuentan con equipo o persona responsable de TI?</label>
+    <label>G.1. 9. ¿Cuentan con equipo o persona responsable de TI?</label>
     <div class="opciones" data-radio="ti">
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, equipo interno de TI</div>
       <div class="opcion" data-type="radio" onclick="toggleRadio(this,'ti')">Sí, una persona encargada (comparte funciones)</div>
@@ -383,7 +383,7 @@
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>10. Capacidad del equipo para implementar soluciones de IA</label>
+    <label>G.2. 10. Capacidad del equipo para implementar soluciones de IA</label>
     <div class="escala" data-escala="ti-cap">
       <div class="num" onclick="setEscala(this,'ti-cap')">1</div>
       <div class="num" onclick="setEscala(this,'ti-cap')">2</div>
@@ -394,7 +394,7 @@
     <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte básico · 5 = equipo con capacidad de integraciones</div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>11. ¿Qué infraestructura tecnológica tiene la empresa para evaluar la opción de instalar IA local (modelos ejecutados en sus propios equipos o servidores)?</label>
+    <label>G.3. 11. ¿Qué infraestructura tecnológica tiene la empresa para evaluar la opción de instalar IA local (modelos ejecutados en sus propios equipos o servidores)?</label>
     <div class="opciones" data-multi="infraestructura">
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servidor propio en las instalaciones de la empresa</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servicios en la nube (AWS, Azure, Google Cloud)</div>
@@ -479,10 +479,13 @@ function autoFillPasos(area, value) {
   var stepsMap = {
     mv: {"prospeccion": "Lead entra → Se califica → Se asigna → Se contacta", "cotizacion": "Solicitud → Calcula precio → Envía propuesta → Negocia → Cierra", "cierre": "Propuesta aceptada → Contrato → Pago inicial → Ejecuta", "postventa": "Cliente recibe → Encuesta → Soporte → Fidelización", "crm": "Contacto → Registro → Segmenta → Campaña → Reporta", "publicidad": "Brief → Crea contenido → Publica → Mide → Optimiza", "otro": ""},
     ops: {"pedidos": "Pedido entra → Verifica stock → Prepara → Despacha → Confirma", "logistica": "Solicitud de envío → Alista → Ruta → Entrega → Confirma", "produccion": "Insumos → Proceso → Control calidad → Empaque → Almacena", "calidad": "Muestra → Inspecciona → Mide → Reporta → Aprueba/Rechaza", "inventario": "Recepción → Registra → Almacena → Actualiza → Reporta", "soporte": "Ticket abre → Clasifica → Resuelve → Cierra → Encuesta", "otro": ""},
-    fin: {"facturacion": "Venta → Genera factura → Envía → Registra → Archiva", "conciliacion": "Exporta movimientos → Compara → Ajusta → Concilia → Reporta", "cierre": "Revisa cuentas → Ajusta → Calcula impuestos → Cierra mes → Reporta", "cobranza": "Factura vence → Recuerda → Gestiona → Recibe → Concilia", "reporting": "Recopila datos → Clasifica → Calcula → Genera informe → Presenta", "otro": ""},
+    fin: {"facturacion": "Venta → Genera factura → Envía → Registra → Archiva", "conciliacion": "Exporta movimientos → Compara → Ajusta → Concilia → Reporta", "cierre": "Revisa cuentas → Ajusta → Calcula impuestos → Cierra mes → Reporta", "cobranza": "Factura vence → Recuerda → Gestiona → Recibe → Concilia", "reporting_g": "Recopila datos \u2192 Analiza \u2192 Prepara informe \u2192 Presenta \u2192 Decide",
+    "reporting": "Recopila datos → Clasifica → Calcula → Genera informe → Presenta", "otro": ""},
     rrhh: {"seleccion": "Vacante → Publica → Recibe CVs → Preselecciona → Entrevista → Contrata", "nomina": "Registra novedades → Calcula → Genera nómina → Paga → Reporta", "evaluacion": "Define metas → Evalúa → Retroalimenta → Califica → Archiva", "clima": "Diseña encuesta → Aplica → Analiza → Reporta → Plan de acción", "capacitacion": "Detecta necesidad → Diseña → Ejecuta → Evalúa → Certifica", "otro": ""},
-    dir: {"planeacion": "Diagnóstico → Define objetivos → Planifica → Ejecuta → Mide", "reporting": "Recopila datos → Analiza → Prepara informe → Presenta → Decide", "metas": "Define KPI → Comunica → Da seguimiento → Evalúa → Ajusta", "mercado": "Investiga → Analiza competencia → Identifica oportunidades → Reporta", "presupuesto": "Proyecta ingresos → Estima gastos → Asigna → Ejecuta → Controla", "otro": ""}
-  };
+    dir: {"planeacion": "Diagnóstico → Define objetivos → Planifica → Ejecuta → Mide", "reporting_g": "Recopila datos \u2192 Analiza \u2192 Prepara informe \u2192 Presenta \u2192 Decide",
+    "reporting": "Recopila datos → Analiza → Prepara informe → Presenta → Decide", "metas": "Define KPI → Comunica → Da seguimiento → Evalúa → Ajusta", "mercado": "Investiga → Analiza competencia → Identifica oportunidades → Reporta", "presupuesto": "Proyecta ingresos → Estima gastos → Asigna → Ejecuta → Controla", "otro": ""}
+ ,
+    "cierre_2": "Revisa cuentas \u2192 Ajusta \u2192 Calcula impuestos \u2192 Cierra mes \u2192 Reporta" };
   var input = document.getElementById('pyme-' + area + '-pasos');
   if (stepsMap[area] && stepsMap[area][value] !== undefined) {
     input.value = stepsMap[area][value];
