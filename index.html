@@ -25,6 +25,7 @@
   .opcion {
     display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px;
     border: 1px solid rgba(45,42,36,.08); cursor: pointer; font-size: 12px; background: #fff; transition: .15s;
+    max-width: 100%; word-break: break-word;
   }
   .opcion:hover { border-color: rgba(232,99,58,.2); }
   .opcion input { display: none; }
@@ -144,119 +145,148 @@
       <div class="opcion" onclick="toggleOpcion(this)">Solo exportaciones manuales</div>
     </div>
   </div>
+  <div style="margin-bottom:10px;">
+    <label>4. ¿Qué asistentes o ecosistemas de IA usan hoy?</label>
+    <div class="opciones" data-multi="ia-ecosistemas">
+      <div class="opcion" onclick="toggleOpcion(this)">ChatGPT</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Google Gemini</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Microsoft Copilot</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Claude (Anthropic)</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Meta AI</div>
+      <div class="opcion" onclick="toggleOpcion(this)">IA integrada en ERP/CRM</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Ninguno / no sabemos</div>
+    </div>
+  </div>
 </div>
 
 <!-- PREGUNTAS MICROEMPRESA (salen si micro) -->
 <div class="card hidden" data-section="micro">
   <h2>B. Procesos y prioridades</h2>
   <div style="margin-bottom:10px;">
-    <label>4. ¿Qué proceso rutinario consume más horas de tu equipo hoy?</label>
-    <textarea id="micro-proceso" rows="2" placeholder="Ej: responder consultas de clientes, gestionar pedidos, conciliar pagos..."></textarea>
+    <label>4. ¿Qué áreas manejas en tu negocio?</label>
+    <div class="opciones" data-multi="micro-areas">
+      <div class="opcion" onclick="toggleOpcion(this)">Mercadeo y Ventas</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Operaciones</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Finanzas y Contabilidad</div>
+      <div class="opcion" onclick="toggleOpcion(this)">RRHH</div>
+      <div class="opcion" onclick="toggleOpcion(this)">Dirección Estratégica</div>
+    </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>5. ¿Cuáles de estos te gustaría automatizar? <span class="tag">(puedes marcar varias)</span></label>
-        <div class="opciones" data-multi="micro-prioridad">
-          <div class="opcion" onclick="toggleOpcion(this)">Atención al cliente / consultas</div>
-          <div class="opcion" onclick="toggleOpcion(this)">Marketing y contenido para redes</div>
-          <div class="opcion" onclick="toggleOpcion(this)">Gestión de pedidos / inventario</div>
-          <div class="opcion" onclick="toggleOpcion(this)">Contabilidad / facturación</div>
-          <div class="opcion" onclick="toggleOpcion(this)">Otro</div>
-        </div>
-        <div style="margin-top:4px;">
-          <input type="text" id="micro-otro" placeholder="Si marcaste Otro, descríbelo aquí" style="width:100%;">
-        </div>
-          </div>
-        </div>
+    <label>5. ¿Qué proceso o procesos rutinarios consumen más horas y te gustaría automatizar?</label>
+    <textarea id="micro-automatizar" rows="3" placeholder="Ej: atender consultas de clientes por WhatsApp, generar cotizaciones a mano, conciliar pagos en Excel..."></textarea>
+  </div>
+</div>
 
-<!-- PREGUNTAS PYME (salen si pyme) – version generalizada de MountainFood -->
+<!-- PREGUNTAS PYME -->
 <div class="card hidden" data-section="pyme">
+
   <h2>B. Mercadeo y Ventas</h2>
-  <div style="margin-bottom:10px;">
-    <label>4. ¿Cuáles son tus canales de venta hoy?</label>
-    <div class="opciones" data-multi="canales">
-      <div class="opcion" onclick="toggleOpcion(this)">Tienda online / E-commerce</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Marketplaces (MercadoLibre, Amazon, etc.)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Venta directa / presencial</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Distribuidores / mayoristas</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Exportación</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>4. ¿Cu&aacute;l es tu proceso principal de mercadeo y ventas?</label>
+    <textarea id="pyme-mv-proceso" rows="2" placeholder="Ej: prospecci&oacute;n de leads, cotizaci&oacute;n, cierre, postventa"></textarea>
   </div>
-  <div style="margin-bottom:10px;">
-    <label>5. ¿Qué métricas de ventas miden de forma consistente?</label>
-    <div class="opciones" data-multi="metricas">
-      <div class="opcion" onclick="toggleOpcion(this)">Ventas por canal</div>
-      <div class="opcion" onclick="toggleOpcion(this)">ROAS / retorno de inversión publicitaria</div>
-      <div class="opcion" onclick="toggleOpcion(this)">CAC (costo de adquisición de cliente)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Margen por producto o servicio</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Ninguna se mide de forma consistente</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales (separados por -&gt; )</label>
+    <input type="text" id="pyme-mv-pasos" placeholder="Ej: Lead llega Cotiza Negocia Cierra Factura">
   </div>
-  <div style="margin-bottom:10px;">
-    <label>6. ¿Qué plataformas de publicidad usan?</label>
-    <div class="opciones" data-multi="ads">
-      <div class="opcion" onclick="toggleOpcion(this)">Meta Ads (Facebook / Instagram)</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Google Ads</div>
-      <div class="opcion" onclick="toggleOpcion(this)">LinkedIn Ads</div>
-      <div class="opcion" onclick="toggleOpcion(this)">TikTok Ads</div>
-      <div class="opcion" onclick="toggleOpcion(this)">No uso publicidad paga</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
+    <textarea id="pyme-mv-cuello" rows="1" placeholder="Ej: en cotizar, porque se hace a mano"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
+    <textarea id="pyme-mv-mejora" rows="1" placeholder="Ej: que el cliente pueda ver precios sin consultar"></textarea>
   </div>
 
   <h2>C. Operaciones</h2>
-  <div style="margin-bottom:10px;">
-    <label>7. ¿Cómo se gestionan hoy los pedidos / la producción / los servicios?</label>
-    <div class="opciones" data-radio="operacion">
-      <div class="opcion" onclick="toggleRadio(this,'operacion')">Manual: Excel, pizarra, papel</div>
-      <div class="opcion" onclick="toggleRadio(this,'operacion')">Software especializado (ERP / WMS / CRM)</div>
-      <div class="opcion" onclick="toggleRadio(this,'operacion')">Mixto: depende del área o volumen</div>
-      <div class="opcion" onclick="toggleRadio(this,'operacion')">Sin proceso formal definido</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>5. Proceso principal de operaciones o entrega</label>
+    <textarea id="pyme-ops-proceso" rows="2" placeholder="Ej: gesti&oacute;n de pedidos, log&iacute;stica, producci&oacute;n"></textarea>
   </div>
-  <div style="margin-bottom:10px;">
-    <label>8. Retos operativos actuales</label>
-    <div class="opciones" data-multi="retos">
-      <div class="opcion" onclick="toggleOpcion(this)">Cumplimiento de pedidos a tiempo</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Control de inventario / insumos</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Mermas / pérdidas / errores</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Coordinación entre áreas</div>
-      <div class="opcion" onclick="toggleOpcion(this)">Seguimiento a clientes post-venta</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales (separados por -&gt; )</label>
+    <input type="text" id="pyme-ops-pasos" placeholder="Ej: Pedido Prepara entrega Cliente recibe">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
+    <textarea id="pyme-ops-cuello" rows="1" placeholder="Ej: el inventario no est&aacute; actualizado"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
+    <textarea id="pyme-ops-mejora" rows="1" placeholder="Ej: notificaci&oacute;n autom&aacute;tica cuando el stock baja"></textarea>
   </div>
 
   <h2>D. Finanzas y Contabilidad</h2>
-  <div style="margin-bottom:10px;">
-    <label>9. ¿Cómo llevan la contabilidad hoy?</label>
-    <div class="opciones" data-radio="contabilidad">
-      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">ERP con módulo contable integrado</div>
-      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Software contable separado con carga manual</div>
-      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Contador externo con reportes manuales</div>
-      <div class="opcion" onclick="toggleRadio(this,'contabilidad')">Hojas de cálculo y correos</div>
-    </div>
+  <div style="margin-bottom:6px;">
+    <label>6. Proceso principal de finanzas o contabilidad</label>
+    <textarea id="pyme-fin-proceso" rows="2" placeholder="Ej: facturaci&oacute;n, conciliaci&oacute;n, cierre contable"></textarea>
   </div>
-  <div style="margin-bottom:10px;">
-    <label>10. ¿Con qué certeza conoces la rentabilidad real por producto/servicio?</label>
-    <div class="escala" data-escala="rentabilidad">
-      <div class="num" onclick="setEscala(this,'rentabilidad')">1</div>
-      <div class="num" onclick="setEscala(this,'rentabilidad')">2</div>
-      <div class="num" onclick="setEscala(this,'rentabilidad')">3</div>
-      <div class="num" onclick="setEscala(this,'rentabilidad')">4</div>
-      <div class="num" onclick="setEscala(this,'rentabilidad')">5</div>
-    </div>
-    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = no se sabe · 5 = cálculo en tiempo real</div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales (separados por -&gt; )</label>
+    <input type="text" id="pyme-fin-pasos" placeholder="Ej: Venta Factura Cobra Concilia">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
+    <textarea id="pyme-fin-cuello" rows="1" placeholder="Ej: conciliar pagos toma 2 d&iacute;as"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
+    <textarea id="pyme-fin-mejora" rows="1" placeholder="Ej: que la conciliaci&oacute;n sea autom&aacute;tica"></textarea>
   </div>
 
-  <h2>E. Tecnología y equipo</h2>
+  <h2>E. RRHH</h2>
+  <div style="margin-bottom:6px;">
+    <label>7. Proceso principal de RRHH</label>
+    <textarea id="pyme-rrhh-proceso" rows="2" placeholder="Ej: selecci&oacute;n, n&oacute;mina, evaluaci&oacute;n de desempe&ntilde;o"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales (separados por -&gt; )</label>
+    <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: Vacante Recibe CVs Entrevista Contrata">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
+    <textarea id="pyme-rrhh-cuello" rows="1" placeholder="Ej: revisar CVs uno por uno"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
+    <textarea id="pyme-rrhh-mejora" rows="1" placeholder="Ej: que un IA preseleccione los mejores perfiles"></textarea>
+  </div>
+
+  <h2>F. Direcci&oacute;n Estrat&eacute;gica</h2>
+  <div style="margin-bottom:6px;">
+    <label>8. Proceso principal de direcci&oacute;n estrat&eacute;gica</label>
+    <textarea id="pyme-dir-proceso" rows="2" placeholder="Ej: planeaci&oacute;n anual, reporting, definici&oacute;n de metas"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>Pasos principales (separados por -&gt; )</label>
+    <input type="text" id="pyme-dir-pasos" placeholder="Ej: Diagn&oacute;stico Definir metas Ejecutar Medir">
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>D&oacute;nde se pierde m&aacute;s tiempo o hay errores?</label>
+    <textarea id="pyme-dir-cuello" rows="1" placeholder="Ej: la informaci&oacute;n para decidir est&aacute; dispersa"></textarea>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C&oacute;mo te imaginas que deber&iacute;a funcionar idealmente?</label>
+    <textarea id="pyme-dir-mejora" rows="1" placeholder="Ej: un tablero con toda la informaci&oacute;n actualizada"></textarea>
+  </div>
+
+</div>
+
+<!-- G. TECNOLOGIA Y EQUIPO -->
+<div class="card hidden" data-section="pyme">
+  <h2>G. Tecnolog&iacute;a y equipo</h2>
   <div style="margin-bottom:10px;">
-    <label>11. ¿Cuentan con equipo o persona responsable de TI?</label>
+    <label>9. &iquest;Cuentan con equipo o persona responsable de TI?</label>
     <div class="opciones" data-radio="ti">
-      <div class="opcion" onclick="toggleRadio(this,'ti')">Sí, equipo interno de TI</div>
-      <div class="opcion" onclick="toggleRadio(this,'ti')">Sí, una persona encargada (comparte funciones)</div>
+      <div class="opcion" onclick="toggleRadio(this,'ti')">Si, equipo interno de TI</div>
+      <div class="opcion" onclick="toggleRadio(this,'ti')">Si, una persona encargada (comparte funciones)</div>
       <div class="opcion" onclick="toggleRadio(this,'ti')">Proveedor / consultor externo</div>
       <div class="opcion" onclick="toggleRadio(this,'ti')">No contamos con soporte TI</div>
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <label>12. Capacidad del soporte TI para implementar soluciones de IA</label>
+    <label>10. Capacidad del equipo para implementar soluciones de IA</label>
     <div class="escala" data-escala="ti-cap">
       <div class="num" onclick="setEscala(this,'ti-cap')">1</div>
       <div class="num" onclick="setEscala(this,'ti-cap')">2</div>
@@ -264,16 +294,29 @@
       <div class="num" onclick="setEscala(this,'ti-cap')">4</div>
       <div class="num" onclick="setEscala(this,'ti-cap')">5</div>
     </div>
-    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte básico · 5 = equipo con capacidad de integraciones</div>
+    <div style="font-size:10px;color:#8B8176;margin-top:2px;text-align:center;">1 = sin personal · 3 = soporte b&aacute;sico · 5 = equipo con capacidad de integraciones</div>
   </div>
-
-  <h2>F. Procesos a automatizar</h2>
   <div style="margin-bottom:10px;">
-    <label>13. ¿Qué procesos crees que deberían automatizarse primero en cada área?</label>
-    <textarea id="pys-automatizar" rows="3" placeholder="Ej: mercadeo (anuncios, contenido), operaciones (pedidos, logística), contabilidad (conciliaciones), atención al cliente (consultas)..."></textarea>
+    <label>11. &iquest;Qu&eacute; tipo de despliegue de IA prefieres o consideras factible?</label>
+    <div class="opciones" data-radio="despliegue">
+      <div class="opcion" onclick="toggleRadio(this,'despliegue')">Cloud / nube (ChatGPT, Gemini, Claude)</div>
+      <div class="opcion" onclick="toggleRadio(this,'despliegue')">Local (modelos en tu PC, sin internet)</div>
+      <div class="opcion" onclick="toggleRadio(this,'despliegue')">H&iacute;brido (parte local, parte cloud)</div>
+      <div class="opcion" onclick="toggleRadio(this,'despliegue')">No lo s&eacute; / no tenemos preferencia</div>
+    </div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <label>12. Presupuesto mensual estimado para herramientas de IA (en pesos colombianos)</label>
+    <div class="opciones" data-radio="presupuesto">
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$0 - solo herramientas gratuitas</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">Hasta $100.000/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$100.000 - $300.000/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">$300.000 - $1.000.000/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">M&aacute;s de $1.000.000/mes</div>
+      <div class="opcion" onclick="toggleRadio(this,'presupuesto')">A&uacute;n sin presupuesto definido</div>
+    </div>
   </div>
 </div>
-
 <!-- NIVEL DE MADUREZ IA (todos lo ven) -->
 <div class="card hidden" data-section="madurez">
   <h2>¿En qué nivel de IA está tu organización hoy?</h2>
@@ -296,101 +339,6 @@
       <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
     </div>
   </div>
-</div>
-
-</div>
-</div>
-
-<!-- DETALLE DE PROCESOS (opcional) -->
-<div class="card hidden" data-section="detalle-procesos">
-  <h2>H. Detalle de procesos <span style="font-size:10px;color:#8B8176;font-weight:400;">(opcional, 2-3 min)</span></h2>
-  <p style="font-size:12px;color:#5C5348;margin-bottom:4px;">Si quieres una propuesta mas precisa, marca los procesos que aplican en cada area.</p>
-  <div style="margin-bottom:8px;">
-    <label>¿Quieres detallar tus procesos?</label>
-    <div class="opciones" id="detalle-toggle" data-radio="detalle">
-      <div class="opcion" onclick="toggleRadio(this,'detalle');toggleDetalle(true)">Sí, agregar detalle de procesos</div>
-      <div class="opcion" onclick="toggleRadio(this,'detalle');toggleDetalle(false)">No por ahora</div>
-    </div>
-  </div>
-  <div id="detalle-areas" class="hidden">
-    <h3 style="font-size:14px;margin-top:6px;">📣 Marketing</h3>
-    <div style="margin-bottom:4px;">
-      <div class="opciones" data-multi="mkt-procesos">
-        <div class="opcion" onclick="toggleOpcion(this)">Publicidad en redes</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Gestion de campanas</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Creacion de contenido</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Email marketing</div>
-        <div class="opcion" onclick="toggleOpcion(this)">SEO / busqueda</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Reporting / analisis</div>
-        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
-      </div>
-    </div>
-    <h3 style="font-size:14px;margin-top:6px;">💰 Ventas</h3>
-    <div style="margin-bottom:4px;">
-      <div class="opciones" data-multi="ventas-procesos">
-        <div class="opcion" onclick="toggleOpcion(this)">Gestion de leads</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Cotizacion / presupuestos</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Negociacion / cierre</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Postventa / seguimiento</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Gestion de CRM</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Facturacion / cobro</div>
-        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
-      </div>
-    </div>
-    <h3 style="font-size:14px;margin-top:6px;">🔧 Operaciones / Entrega</h3>
-    <div style="margin-bottom:4px;">
-      <div class="opciones" data-multi="ops-procesos">
-        <div class="opcion" onclick="toggleOpcion(this)">Gestion de pedidos</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Logistica / entrega</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Produccion / fabricacion</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Control de calidad</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Inventario / insumos</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Servicio / soporte al cliente</div>
-        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
-      </div>
-    </div>
-    <h3 style="font-size:14px;margin-top:6px;">📋 Administracion</h3>
-    <div style="margin-bottom:4px;">
-      <div class="opciones" data-multi="adm-procesos">
-        <div class="opcion" onclick="toggleOpcion(this)">Facturacion / cobranza</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Contabilidad / libros</div>
-        <div class="opcion" onclick="toggleOpcion(this)">RRHH / nominas</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Legal / documentacion</div>
-        <div class="opcion" onclick="toggleOpcion(this)">Reporting gerencial</div>
-        <div class="opcion" onclick="toggleOpcion(this)">No aplica</div>
-      </div>
-    </div>
-    <div style="margin-bottom:6px;">
-      <label>Comentarios sobre tus procesos <span class="tag">(opcional)</span></label>
-      <textarea id="detalle-comentarios" rows="2" placeholder="Algo mas que quieras compartir..."></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- VIABILIDAD -->
-<div class="card hidden" data-section="viabilidad">
-  <h2>Viabilidad y presupuesto</h2>
-    <div style="margin-bottom:10px;">
-      <label>¿Qué presupuesto mensual (en pesos colombianos) podrías destinar a herramientas de IA?</label>
-      <div class="opciones" data-radio="presupuesto-final">
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$0 — solo herramientas gratuitas</div>
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Hasta $100.000/mes</div>
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$100.000–$300.000/mes</div>
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">$300.000–$1.000.000/mes</div>
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Más de $1.000.000/mes</div>
-        <div class="opcion" onclick="toggleRadio(this,'presupuesto-final')">Aún sin presupuesto definido</div>
-      </div>
-  </div>
-  <div style="margin-bottom:10px;">
-    <label>Comentarios adicionales</label>
-    <textarea id="comentarios" rows="2" placeholder="Algo más que debamos saber..."></textarea>
-  </div>
-</div>
-
-<div class="acciones">
-  <button type="button" class="btn btn-primary" onclick="descargar()">⬇ Descargar respuestas (.txt)</button>
-  <button type="button" class="btn btn-outline" onclick="limpiar()">✖ Limpiar formulario</button>
-</div>
 
 </form>
 
@@ -408,8 +356,7 @@ function seleccionarTamano(t) {
   document.querySelectorAll('[data-section="basica"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="' + t + '"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="madurez"]').forEach(c => c.classList.remove('hidden'));
-    document.querySelectorAll('[data-section="detalle-procesos"]').forEach(c => c.classList.remove('hidden'));
-    document.querySelectorAll('[data-section="viabilidad"]').forEach(c => c.classList.remove('hidden'));
+        
   actualizarProgreso();
 }
 
@@ -433,12 +380,6 @@ function setEscala(el, grupo) {
   el.classList.add('active');
 }
 
-function toggleDetalle(show) {
-  var el = document.getElementById('detalle-areas');
-  if (show) el.classList.remove('hidden'); else el.classList.add('hidden');
-  actualizarProgreso();
-}
-
 function actualizarProgreso() {
   var visibles = document.querySelectorAll('.card:not(.hidden)').length;
   var total = document.querySelectorAll('.card').length;
@@ -452,32 +393,39 @@ function recolectar() {
   r['herramientas'] = [...document.querySelectorAll('[data-multi="herramientas"] .active')].map(e => e.textContent.trim()).join(', ');
   r['flujo_info'] = [...document.querySelectorAll('[data-radio="flujo"] .active')].map(e => e.textContent.trim()).join(', ');
   r['estado_datos'] = [...document.querySelectorAll('[data-multi="datos"] .active')].map(e => e.textContent.trim()).join(', ');
+  r['ia_ecosistemas'] = [...document.querySelectorAll('[data-multi="ia-ecosistemas"] .active')].map(e => e.textContent.trim()).join(', ');
 
   if (tamano === 'micro') {
-    r['proceso_critico'] = document.getElementById('micro-proceso').value;
-    r['prioridad'] = [...document.querySelectorAll('[data-multi="micro-prioridad"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['micro_otro'] = document.getElementById('micro-otro').value;
-      } else {
-    r['canales'] = [...document.querySelectorAll('[data-multi="canales"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['metricas'] = [...document.querySelectorAll('[data-multi="metricas"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['ads'] = [...document.querySelectorAll('[data-multi="ads"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['operacion'] = [...document.querySelectorAll('[data-radio="operacion"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['retos'] = [...document.querySelectorAll('[data-multi="retos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['contabilidad'] = [...document.querySelectorAll('[data-radio="contabilidad"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['rentabilidad'] = [...document.querySelectorAll('[data-escala="rentabilidad"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['micro_areas'] = [...document.querySelectorAll('[data-multi="micro-areas"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['micro_automatizar'] = document.getElementById('micro-automatizar').value;
+  } else {
+    r['mv_proceso'] = document.getElementById('pyme-mv-proceso').value;
+    r['mv_pasos'] = document.getElementById('pyme-mv-pasos').value;
+    r['mv_cuello'] = document.getElementById('pyme-mv-cuello').value;
+    r['mv_mejora'] = document.getElementById('pyme-mv-mejora').value;
+    r['ops_proceso'] = document.getElementById('pyme-ops-proceso').value;
+    r['ops_pasos'] = document.getElementById('pyme-ops-pasos').value;
+    r['ops_cuello'] = document.getElementById('pyme-ops-cuello').value;
+    r['ops_mejora'] = document.getElementById('pyme-ops-mejora').value;
+    r['fin_proceso'] = document.getElementById('pyme-fin-proceso').value;
+    r['fin_pasos'] = document.getElementById('pyme-fin-pasos').value;
+    r['fin_cuello'] = document.getElementById('pyme-fin-cuello').value;
+    r['fin_mejora'] = document.getElementById('pyme-fin-mejora').value;
+    r['rrhh_proceso'] = document.getElementById('pyme-rrhh-proceso').value;
+    r['rrhh_pasos'] = document.getElementById('pyme-rrhh-pasos').value;
+    r['rrhh_cuello'] = document.getElementById('pyme-rrhh-cuello').value;
+    r['rrhh_mejora'] = document.getElementById('pyme-rrhh-mejora').value;
+    r['dir_proceso'] = document.getElementById('pyme-dir-proceso').value;
+    r['dir_pasos'] = document.getElementById('pyme-dir-pasos').value;
+    r['dir_cuello'] = document.getElementById('pyme-dir-cuello').value;
+    r['dir_mejora'] = document.getElementById('pyme-dir-mejora').value;
     r['ti_equipo'] = [...document.querySelectorAll('[data-radio="ti"] .active')].map(e => e.textContent.trim()).join(', ');
     r['ti_capacidad'] = [...document.querySelectorAll('[data-escala="ti-cap"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['automatizar'] = document.getElementById('pys-automatizar').value;
+    r['despliegue'] = [...document.querySelectorAll('[data-radio="despliegue"] .active')].map(e => e.textContent.trim()).join(', ');
+    r['presupuesto'] = [...document.querySelectorAll('[data-radio="presupuesto"] .active')].map(e => e.textContent.trim()).join(', ');
   }
-  r['presupuesto_final'] = [...document.querySelectorAll('[data-radio="presupuesto-final"] .active')].map(e => e.textContent.trim()).join(', ');
   r['comentarios'] = document.getElementById('comentarios').value;
-    r['detalle_procesos'] = [...document.querySelectorAll('[data-radio="detalle"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['mkt_procesos'] = [...document.querySelectorAll('[data-multi="mkt-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['ventas_procesos'] = [...document.querySelectorAll('[data-multi="ventas-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['ops_procesos'] = [...document.querySelectorAll('[data-multi="ops-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['adm_procesos'] = [...document.querySelectorAll('[data-multi="adm-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['detalle_comentarios'] = document.getElementById('detalle-comentarios').value;
-    return r;
+  return r;
 }
 
 function descargar() {
@@ -490,46 +438,50 @@ function descargar() {
   txt += '--- ECOSISTEMA TECNOLÓGICO ---\n';
   txt += 'Herramientas: ' + (r.herramientas || '(ninguna seleccionada)') + '\n';
   txt += 'Flujo de información: ' + (r.flujo_info || '-') + '\n';
-  txt += 'Estado de datos: ' + (r.estado_datos || '-') + '\n\n';
+  txt += 'Estado de datos: ' + (r.estado_datos || '-') + '\n';
+  txt += 'IA ecosystems: ' + (r.ia_ecosistemas || '-') + '\n\n';
   txt += '--- NIVEL DE MADUREZ IA ---\n';
   txt += (r.nivel_madurez || '(no seleccionado)') + '\n\n';
 
   if (tamano === 'micro') {
     txt += '--- PROCESOS Y PRIORIDADES ---\n';
-    txt += 'Proceso que consume más horas: ' + (r.proceso_critico || '-') + '\n';
-    txt += 'Prioridad de automatización: ' + (r.prioridad || '-') + '\n';
-    txt += 'Otro (prioridad): ' + (r.micro_otro || '-') + '\n';
-    txt += 'Presupuesto estimado: (ver sección Viabilidad)' + '\n\n';
+    txt += 'Áreas que maneja: ' + (r.micro_areas || '-') + '\n';
+    txt += 'Procesos a automatizar: ' + (r.micro_automatizar || '-') + '\n\n';
   } else {
     txt += '--- MERCADEO Y VENTAS ---\n';
-    txt += 'Canales: ' + (r.canales || '-') + '\n';
-    txt += 'Métricas: ' + (r.metricas || '-') + '\n';
-    txt += 'Publicidad: ' + (r.ads || '-') + '\n\n';
+    txt += 'Proceso: ' + (r.mv_proceso || '-') + '\n';
+    txt += 'Pasos: ' + (r.mv_pasos || '-') + '\n';
+    txt += 'Cuello de botella: ' + (r.mv_cuello || '-') + '\n';
+    txt += 'Mejora deseada: ' + (r.mv_mejora || '-') + '\n\n';
     txt += '--- OPERACIONES ---\n';
-    txt += 'Gestión de operaciones: ' + (r.operacion || '-') + '\n';
-    txt += 'Retos operativos: ' + (r.retos || '-') + '\n\n';
-    txt += '--- FINANZAS ---\n';
-    txt += 'Contabilidad: ' + (r.contabilidad || '-') + '\n';
-    txt += 'Visibilidad rentabilidad: ' + (r.rentabilidad || '-') + '\n\n';
-    txt += '--- TECNOLOGÍA ---\n';
+    txt += 'Proceso: ' + (r.ops_proceso || '-') + '\n';
+    txt += 'Pasos: ' + (r.ops_pasos || '-') + '\n';
+    txt += 'Cuello de botella: ' + (r.ops_cuello || '-') + '\n';
+    txt += 'Mejora deseada: ' + (r.ops_mejora || '-') + '\n\n';
+    txt += '--- FINANZAS Y CONTABILIDAD ---\n';
+    txt += 'Proceso: ' + (r.fin_proceso || '-') + '\n';
+    txt += 'Pasos: ' + (r.fin_pasos || '-') + '\n';
+    txt += 'Cuello de botella: ' + (r.fin_cuello || '-') + '\n';
+    txt += 'Mejora deseada: ' + (r.fin_mejora || '-') + '\n\n';
+    txt += '--- RRHH ---\n';
+    txt += 'Proceso: ' + (r.rrhh_proceso || '-') + '\n';
+    txt += 'Pasos: ' + (r.rrhh_pasos || '-') + '\n';
+    txt += 'Cuello de botella: ' + (r.rrhh_cuello || '-') + '\n';
+    txt += 'Mejora deseada: ' + (r.rrhh_mejora || '-') + '\n\n';
+    txt += '--- DIRECCIÓN ESTRATÉGICA ---\n';
+    txt += 'Proceso: ' + (r.dir_proceso || '-') + '\n';
+    txt += 'Pasos: ' + (r.dir_pasos || '-') + '\n';
+    txt += 'Cuello de botella: ' + (r.dir_cuello || '-') + '\n';
+    txt += 'Mejora deseada: ' + (r.dir_mejora || '-') + '\n\n';
+    txt += '--- TECNOLOGIA Y EQUIPO ---\n';
     txt += 'Equipo TI: ' + (r.ti_equipo || '-') + '\n';
-    txt += 'Capacidad TI: ' + (r.ti_capacidad || '-') + '\n\n';
-    txt += '--- PROCESOS A AUTOMATIZAR ---\n';
-    txt += (r.automatizar || '-') + '\n\n';
+    txt += 'Capacidad TI: ' + (r.ti_capacidad || '-') + '\n';
+    txt += 'Despliegue: ' + (r.despliegue || '-') + '\n';
+    txt += 'Presupuesto: ' + (r.presupuesto || '-') + '\n\n';
   }
 
-  txt += '--- PRESUPUESTO ---\n';
-  txt += 'Presupuesto mensual: ' + (r.presupuesto_final || '-') + '\n\n';
-  txt += 'Comentarios: ' + (r.comentarios || '-') + '\n\n';
-    if (r.detalle_procesos && r.detalle_procesos.indexOf('Sí') > -1) {
-      txt += '--- DETALLE DE PROCESOS ---\n';
-      txt += 'Marketing: ' + (r.mkt_procesos || '-') + '\n';
-      txt += 'Ventas: ' + (r.ventas_procesos || '-') + '\n';
-      txt += 'Operaciones: ' + (r.ops_procesos || '-') + '\n';
-      txt += 'Administración: ' + (r.adm_procesos || '-') + '\n';
-      txt += 'Comentarios procesos: ' + (r.detalle_comentarios || '-') + '\n';
-    }
-    txt += '\n=== FIN DEL DIAGNÓSTICO ===';
+  txt += 'Comentarios: ' + (r.comentarios || '-') + '\n';
+  txt += '\n=== FIN DEL DIAGNÓSTICO ===';
 
   var blob = new Blob([txt], {type: 'text/plain'});
   var a = document.createElement('a');
