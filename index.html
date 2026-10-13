@@ -184,20 +184,32 @@
 
 <!-- PREGUNTAS PYME -->
 <div class="card hidden" data-section="pyme">
-  <h2>Mercadeo y Ventas</h2>
+  <h2>B. Mercadeo y Ventas</h2>
   <div style="margin-bottom:6px;">
-    <label>4. Selecciona tu proceso principal de mercadeo y ventas</label>
+      <div style="margin-bottom:6px;">
+    <label>B.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <div class="opciones" data-multi="mv-procesos">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Prospección de leads</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Cotización y presupuestos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Cierre de ventas</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Postventa y seguimiento</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de CRM</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Publicidad y campañas</div>
+    </div>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>B.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-mv-proceso" onchange="autoFillPasos('mv',this.value)">
       <option value="">Selecciona...</option>
-      <option value="prospeccion">Prospección de leads</option>
-      <option value="cotizacion">Cotización y presupuestos</option>
-      <option value="cierre">Cierre de ventas</option>
-      <option value="postventa">Postventa y seguimiento</option>
-      <option value="crm">Gestión de CRM</option>
-      <option value="publicidad">Publicidad y campañas</option>
+      <option value="prospeccion_de_leads">Prospección de leads</option>
+      <option value="cotizacion_y_presupu">Cotización y presupuestos</option>
+      <option value="cierre_de_ventas">Cierre de ventas</option>
+      <option value="postventa_y_seguimie">Postventa y seguimiento</option>
+      <option value="gestion_de_crm">Gestión de CRM</option>
+      <option value="publicidad_y_campana">Publicidad y campañas</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
-  </div>
+
   <div style="margin-bottom:6px;">
     <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-mv-pasos" placeholder="Ej: paso1 → paso2 → paso3">
@@ -210,20 +222,32 @@
     <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-mv-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-  <h2>Operaciones</h2>
+  <h2>C. Operaciones</h2>
   <div style="margin-bottom:6px;">
-    <label>5. Selecciona tu proceso principal de operaciones</label>
+      <div style="margin-bottom:6px;">
+    <label>C.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <div class="opciones" data-multi="ops-procesos">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de pedidos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Logística y entregas</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Producción / fabricación</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Control de calidad</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Inventario / insumos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servicio al cliente / soporte</div>
+    </div>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>C.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-ops-proceso" onchange="autoFillPasos('ops',this.value)">
       <option value="">Selecciona...</option>
-      <option value="pedidos">Gestión de pedidos</option>
-      <option value="logistica">Logística y entregas</option>
-      <option value="produccion">Producción / fabricación</option>
-      <option value="calidad">Control de calidad</option>
-      <option value="inventario">Inventario / insumos</option>
-      <option value="soporte">Servicio al cliente / soporte</option>
+      <option value="gestion_de_pedidos">Gestión de pedidos</option>
+      <option value="logistica_y_entregas">Logística y entregas</option>
+      <option value="produccion___fabrica">Producción / fabricación</option>
+      <option value="control_de_calidad">Control de calidad</option>
+      <option value="inventario___insumos">Inventario / insumos</option>
+      <option value="servicio_al_cliente_">Servicio al cliente / soporte</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
-  </div>
+
   <div style="margin-bottom:6px;">
     <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-ops-pasos" placeholder="Ej: paso1 → paso2 → paso3">
@@ -236,19 +260,30 @@
     <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-ops-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-  <h2>Finanzas y Contabilidad</h2>
+  <h2>D. Finanzas y Contabilidad</h2>
   <div style="margin-bottom:6px;">
-    <label>6. Selecciona tu proceso principal de finanzas y contabilidad</label>
+      <div style="margin-bottom:6px;">
+    <label>D.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <div class="opciones" data-multi="fin-procesos">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Facturación</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Conciliación bancaria</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Cierre contable</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de cobranza</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Reporting financiero</div>
+    </div>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>D.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-fin-proceso" onchange="autoFillPasos('fin',this.value)">
       <option value="">Selecciona...</option>
       <option value="facturacion">Facturación</option>
-      <option value="conciliacion">Conciliación bancaria</option>
-      <option value="cierre">Cierre contable</option>
-      <option value="cobranza">Gestión de cobranza</option>
-      <option value="reporting">Reporting financiero</option>
+      <option value="conciliacion_bancari">Conciliación bancaria</option>
+      <option value="cierre_contable">Cierre contable</option>
+      <option value="gestion_de_cobranza">Gestión de cobranza</option>
+      <option value="reporting_financiero">Reporting financiero</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
-  </div>
+
   <div style="margin-bottom:6px;">
     <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-fin-pasos" placeholder="Ej: paso1 → paso2 → paso3">
@@ -261,19 +296,30 @@
     <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-fin-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-  <h2>RRHH</h2>
+  <h2>E. RRHH</h2>
   <div style="margin-bottom:6px;">
-    <label>7. Selecciona tu proceso principal de rrhh</label>
+      <div style="margin-bottom:6px;">
+    <label>E.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <div class="opciones" data-multi="rrhh-procesos">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Selección y contratación</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Nómina y beneficios</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Evaluación de desempeño</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Clima laboral</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Capacitación</div>
+    </div>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>E.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-rrhh-proceso" onchange="autoFillPasos('rrhh',this.value)">
       <option value="">Selecciona...</option>
-      <option value="seleccion">Selección y contratación</option>
-      <option value="nomina">Nómina y beneficios</option>
-      <option value="evaluacion">Evaluación de desempeño</option>
-      <option value="clima">Clima laboral</option>
+      <option value="seleccion_y_contrata">Selección y contratación</option>
+      <option value="nomina_y_beneficios">Nómina y beneficios</option>
+      <option value="evaluacion_de_desemp">Evaluación de desempeño</option>
+      <option value="clima_laboral">Clima laboral</option>
       <option value="capacitacion">Capacitación</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
-  </div>
+
   <div style="margin-bottom:6px;">
     <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-rrhh-pasos" placeholder="Ej: paso1 → paso2 → paso3">
@@ -286,19 +332,30 @@
     <label>¿Cómo te imaginas que debería funcionar idealmente? <span class="tag">(opcional)</span></label>
     <textarea id="pyme-rrhh-mejora" rows="1" placeholder="Si se te ocurre cómo mejorarlo..."></textarea>
   </div>
-  <h2>Dirección Estratégica</h2>
+  <h2>F. Dirección Estratégica</h2>
   <div style="margin-bottom:6px;">
-    <label>8. Selecciona tu proceso principal de dirección estratégica</label>
+      <div style="margin-bottom:6px;">
+    <label>F.1. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
+    <div class="opciones" data-multi="dir-procesos">
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Planeación anual</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Reporting gerencial</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Definición de metas / KPIs</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Análisis de mercado</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión presupuestal</div>
+    </div>
+  </div>
+  <div style="margin-bottom:6px;">
+    <label>F.2. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-dir-proceso" onchange="autoFillPasos('dir',this.value)">
       <option value="">Selecciona...</option>
-      <option value="planeacion">Planeación anual</option>
-      <option value="reporting">Reporting gerencial</option>
-      <option value="metas">Definición de metas / KPIs</option>
-      <option value="mercado">Análisis de mercado</option>
-      <option value="presupuesto">Gestión presupuestal</option>
+      <option value="planeacion_anual">Planeación anual</option>
+      <option value="reporting_gerencial">Reporting gerencial</option>
+      <option value="definicion_de_metas_">Definición de metas / KPIs</option>
+      <option value="analisis_de_mercado">Análisis de mercado</option>
+      <option value="gestion_presupuestal">Gestión presupuestal</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
-  </div>
+
   <div style="margin-bottom:6px;">
     <label>Pasos principales <span class="tag">(puedes ajustarlos)</span></label>
     <input type="text" id="pyme-dir-pasos" placeholder="Ej: paso1 → paso2 → paso3">
@@ -446,22 +503,27 @@ function recolectar() {
     r['micro_areas'] = [...document.querySelectorAll('[data-multi="micro-areas"] .active')].map(e => e.textContent.trim()).join(', ');
     r['micro_automatizar'] = document.getElementById('micro-automatizar').value;
   } else {
+    r['mv_procesos_list'] = [...document.querySelectorAll('[data-multi="mv-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
     r['mv_proceso'] = document.getElementById('pyme-mv-proceso').value;
     r['mv_pasos'] = document.getElementById('pyme-mv-pasos').value;
     r['mv_cuello'] = document.getElementById('pyme-mv-cuello').value;
     r['mv_mejora'] = document.getElementById('pyme-mv-mejora').value;
+    r['ops_procesos_list'] = [...document.querySelectorAll('[data-multi="ops-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
     r['ops_proceso'] = document.getElementById('pyme-ops-proceso').value;
     r['ops_pasos'] = document.getElementById('pyme-ops-pasos').value;
     r['ops_cuello'] = document.getElementById('pyme-ops-cuello').value;
     r['ops_mejora'] = document.getElementById('pyme-ops-mejora').value;
+    r['fin_procesos_list'] = [...document.querySelectorAll('[data-multi="fin-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
     r['fin_proceso'] = document.getElementById('pyme-fin-proceso').value;
     r['fin_pasos'] = document.getElementById('pyme-fin-pasos').value;
     r['fin_cuello'] = document.getElementById('pyme-fin-cuello').value;
     r['fin_mejora'] = document.getElementById('pyme-fin-mejora').value;
+    r['rrhh_procesos_list'] = [...document.querySelectorAll('[data-multi="rrhh-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
     r['rrhh_proceso'] = document.getElementById('pyme-rrhh-proceso').value;
     r['rrhh_pasos'] = document.getElementById('pyme-rrhh-pasos').value;
     r['rrhh_cuello'] = document.getElementById('pyme-rrhh-cuello').value;
     r['rrhh_mejora'] = document.getElementById('pyme-rrhh-mejora').value;
+    r['dir_procesos_list'] = [...document.querySelectorAll('[data-multi="dir-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
     r['dir_proceso'] = document.getElementById('pyme-dir-proceso').value;
     r['dir_pasos'] = document.getElementById('pyme-dir-pasos').value;
     r['dir_cuello'] = document.getElementById('pyme-dir-cuello').value;
@@ -495,27 +557,32 @@ function descargar() {
     txt += 'Procesos a automatizar: ' + (r.micro_automatizar || '-') + '\n\n';
   } else {
     txt += '--- MERCADEO Y VENTAS ---\n';
-    txt += 'Proceso: ' + (r.mv_proceso || '-') + '\n';
+    txt += 'Procesos que realizan: ' + (r.mv_procesos_list || '-') + '\n';
+    txt += 'Proceso principal: ' + (r.mv_proceso || '-') + '\n';
     txt += 'Pasos: ' + (r.mv_pasos || '-') + '\n';
     txt += 'Cuello de botella: ' + (r.mv_cuello || '-') + '\n';
     txt += 'Mejora deseada: ' + (r.mv_mejora || '-') + '\n\n';
     txt += '--- OPERACIONES ---\n';
-    txt += 'Proceso: ' + (r.ops_proceso || '-') + '\n';
+    txt += 'Procesos que realizan: ' + (r.ops_procesos_list || '-') + '\n';
+    txt += 'Proceso principal: ' + (r.ops_proceso || '-') + '\n';
     txt += 'Pasos: ' + (r.ops_pasos || '-') + '\n';
     txt += 'Cuello de botella: ' + (r.ops_cuello || '-') + '\n';
     txt += 'Mejora deseada: ' + (r.ops_mejora || '-') + '\n\n';
     txt += '--- FINANZAS Y CONTABILIDAD ---\n';
-    txt += 'Proceso: ' + (r.fin_proceso || '-') + '\n';
+    txt += 'Procesos que realizan: ' + (r.fin_procesos_list || '-') + '\n';
+    txt += 'Proceso principal: ' + (r.fin_proceso || '-') + '\n';
     txt += 'Pasos: ' + (r.fin_pasos || '-') + '\n';
     txt += 'Cuello de botella: ' + (r.fin_cuello || '-') + '\n';
     txt += 'Mejora deseada: ' + (r.fin_mejora || '-') + '\n\n';
     txt += '--- RRHH ---\n';
-    txt += 'Proceso: ' + (r.rrhh_proceso || '-') + '\n';
+    txt += 'Procesos que realizan: ' + (r.rrhh_procesos_list || '-') + '\n';
+    txt += 'Proceso principal: ' + (r.rrhh_proceso || '-') + '\n';
     txt += 'Pasos: ' + (r.rrhh_pasos || '-') + '\n';
     txt += 'Cuello de botella: ' + (r.rrhh_cuello || '-') + '\n';
     txt += 'Mejora deseada: ' + (r.rrhh_mejora || '-') + '\n\n';
     txt += '--- DIRECCIÓN ESTRATÉGICA ---\n';
-    txt += 'Proceso: ' + (r.dir_proceso || '-') + '\n';
+    txt += 'Procesos que realizan: ' + (r.dir_procesos_list || '-') + '\n';
+    txt += 'Proceso principal: ' + (r.dir_proceso || '-') + '\n';
     txt += 'Pasos: ' + (r.dir_pasos || '-') + '\n';
     txt += 'Cuello de botella: ' + (r.dir_cuello || '-') + '\n';
     txt += 'Mejora deseada: ' + (r.dir_mejora || '-') + '\n\n';
@@ -553,3 +620,4 @@ document.getElementById('card-tamano').classList.remove('hidden');
 </div>
 </body>
 </html>
+</div></div></div></div></div></div></div></div></div></div></div>
