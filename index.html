@@ -551,42 +551,67 @@ function descargarMD() {
   var md = '# Diagnóstico de IA\n\n';
   md += '**Empresa:** ' + (r.empresa || '(no especificado)') + '\n';
   md += '**Sector:** ' + (r.sector || '(no especificado)') + '\n';
+  md += '**Tamaño:** ' + (r.tamano || '-') + '\n';
   md += '**Fecha:** ' + new Date().toLocaleDateString('es') + '\n\n';
   md += '---\n\n';
 
+  md += '## A. Ecosistema tecnológico\n\n';
+  md += '- **Herramientas actuales:** ' + (r.herramientas || '-') + '\n';
+  md += '- **Flujo de información:** ' + (r.flujo_info || '-') + '\n';
+  md += '- **Estado de los datos:** ' + (r.estado_datos || '-') + '\n';
+  md += '- **Ecosistemas de IA en uso:** ' + (r.ia_ecosistemas || '-') + '\n\n';
+
   if (tamano === 'micro') {
-    md += '## Procesos y Prioridades\n\n';
+    md += '## B. Procesos y prioridades\n\n';
     md += '- **Áreas que maneja:** ' + (r.micro_areas || '-') + '\n';
-    md += '- **Procesos a automatizar:** ' + (r.micro_automatizar || '-') + '\n\n';
+    md += '- **Procesos que consumen más horas y desea automatizar:** ' + (r.micro_automatizar || '-') + '\n\n';
   } else {
-    md += '## Mercadeo y Ventas\n\n';
-    md += '- **Proceso principal:** ' + (r.mv_proceso || '-') + '\n';
+    md += '## B. Mercadeo y Ventas\n\n';
+    md += '- **Procesos del área:** ' + (r.mv_procesos_list || '-') + '\n';
+    md += '- **Proceso principal / donde aplica IA:** ' + (r.mv_proceso || '-') + '\n';
     md += '- **Pasos:** ' + (r.mv_pasos || '-') + '\n';
     md += '- **Cuello de botella:** ' + (r.mv_cuello || '-') + '\n';
     md += '- **Mejora deseada:** ' + (r.mv_mejora || '-') + '\n\n';
-    md += '## Operaciones\n\n';
-    md += '- **Proceso principal:** ' + (r.ops_proceso || '-') + '\n';
+
+    md += '## C. Operaciones\n\n';
+    md += '- **Procesos del área:** ' + (r.ops_procesos_list || '-') + '\n';
+    md += '- **Proceso principal / donde aplica IA:** ' + (r.ops_proceso || '-') + '\n';
     md += '- **Pasos:** ' + (r.ops_pasos || '-') + '\n';
     md += '- **Cuello de botella:** ' + (r.ops_cuello || '-') + '\n';
     md += '- **Mejora deseada:** ' + (r.ops_mejora || '-') + '\n\n';
-    md += '## Finanzas y Contabilidad\n\n';
-    md += '- **Proceso principal:** ' + (r.fin_proceso || '-') + '\n';
+
+    md += '## D. Finanzas y Contabilidad\n\n';
+    md += '- **Procesos del área:** ' + (r.fin_procesos_list || '-') + '\n';
+    md += '- **Proceso principal / donde aplica IA:** ' + (r.fin_proceso || '-') + '\n';
     md += '- **Pasos:** ' + (r.fin_pasos || '-') + '\n';
     md += '- **Cuello de botella:** ' + (r.fin_cuello || '-') + '\n';
     md += '- **Mejora deseada:** ' + (r.fin_mejora || '-') + '\n\n';
-    md += '## RRHH\n\n';
-    md += '- **Proceso principal:** ' + (r.rrhh_proceso || '-') + '\n';
+
+    md += '## E. RRHH\n\n';
+    md += '- **Procesos del área:** ' + (r.rrhh_procesos_list || '-') + '\n';
+    md += '- **Proceso principal / donde aplica IA:** ' + (r.rrhh_proceso || '-') + '\n';
     md += '- **Pasos:** ' + (r.rrhh_pasos || '-') + '\n';
     md += '- **Cuello de botella:** ' + (r.rrhh_cuello || '-') + '\n';
     md += '- **Mejora deseada:** ' + (r.rrhh_mejora || '-') + '\n\n';
-    md += '## Dirección Estratégica\n\n';
-    md += '- **Proceso principal:** ' + (r.dir_proceso || '-') + '\n';
+
+    md += '## F. Dirección Estratégica\n\n';
+    md += '- **Procesos del área:** ' + (r.dir_procesos_list || '-') + '\n';
+    md += '- **Proceso principal / donde aplica IA:** ' + (r.dir_proceso || '-') + '\n';
     md += '- **Pasos:** ' + (r.dir_pasos || '-') + '\n';
     md += '- **Cuello de botella:** ' + (r.dir_cuello || '-') + '\n';
     md += '- **Mejora deseada:** ' + (r.dir_mejora || '-') + '\n\n';
+
+    md += '## G. Tecnología y equipo\n\n';
+    md += '- **Equipo TI:** ' + (r.ti_equipo || '-') + '\n';
+    md += '- **Capacidad TI (1-5):** ' + (r.ti_capacidad || '-') + '\n';
+    md += '- **Infraestructura para IA local:** ' + (r.infraestructura || '-') + '\n\n';
   }
+
+  md += '## Nivel de madurez IA\n\n';
+  md += '- **Nivel declarado:** ' + (r.nivel_madurez || '-') + '\n\n';
+
   md += '---\n\n';
-  md += '**Comentarios:** ' + (r.comentarios || '-') + '\n';
+  md += '**Comentarios adicionales:** ' + (r.comentarios || '-') + '\n';
 
   var blob = new Blob([md], {type: 'text/markdown'});
   var a = document.createElement('a');
