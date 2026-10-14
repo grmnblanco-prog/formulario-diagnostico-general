@@ -404,34 +404,33 @@
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">No lo sé / necesito asesoría</div>
     </div>
   </div>
-</div>
-<!-- NIVEL DE MADUREZ IA (todos lo ven) -->
-<div class="card hidden" data-section="madurez">
-  <h2>¿En qué nivel de IA está tu organización hoy?</h2>
-  <p style="font-size:12px;color:#5C5348;margin-bottom:8px;"><strong>35.</strong> ¿En qué nivel de IA está tu organización hoy?</p>
-  <div class="madurez-cards" data-radio="madurez">
-    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
-      <div class="nivel">N1 — Asistido</div>
-      <div class="desc">Usamos ChatGPT, Claude u otras IAs en el navegador. Sin integraciones.</div>
+  <!-- NIVEL DE MADUREZ IA (todos lo ven) -->
+  <div class="card hidden" data-section="madurez">
+    <h2>¿En qué nivel de IA está tu organización hoy?</h2>
+    <p style="font-size:12px;color:#5C5348;margin-bottom:8px;"><strong>35.</strong> ¿En qué nivel de IA está tu organización hoy?</p>
+    <div class="madurez-cards" data-radio="madurez">
+      <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
+        <div class="nivel">N1 — Asistido</div>
+        <div class="desc">Usamos ChatGPT, Claude u otras IAs en el navegador. Sin integraciones.</div>
+      </div>
+      <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
+        <div class="nivel">N2 — Guiado</div>
+        <div class="desc">Tenemos herramientas conectadas entre sí y algunas automatizaciones básicas.</div>
+      </div>
+      <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
+        <div class="nivel">N3 — Automatizado</div>
+        <div class="desc">Varios procesos se ejecutan solos y los supervisamos.</div>
+      </div>
+      <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
+        <div class="nivel">N4 — Multi-agente</div>
+        <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
+      </div>
     </div>
-    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
-      <div class="nivel">N2 — Guiado</div>
-      <div class="desc">Tenemos herramientas conectadas entre sí y algunas automatizaciones básicas.</div>
+    <div style="margin-top:16px;text-align:center;">
+      <button type="button" class="btn btn-primary" onclick="descargarMD()">⬇ Descargar (.md)</button>
+      <p style="font-size:12px;color:#5C5348;margin-top:10px;">Descarga el archivo .md y envíalo para recibir una propuesta ajustada a las necesidades de tu organización.</p>
+      <button type="button" class="btn btn-outline" onclick="limpiar()" style="margin-top:8px;">✖ Limpiar formulario</button>
     </div>
-    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
-      <div class="nivel">N3 — Automatizado</div>
-      <div class="desc">Varios procesos se ejecutan solos y los supervisamos.</div>
-    </div>
-    <div class="madurez-card" data-type="radio" onclick="selectMadurez(this)">
-      <div class="nivel">N4 — Multi-agente</div>
-      <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
-    </div>
-  </div>
-
-  <div class="acciones">
-    <button type="button" class="btn btn-primary" onclick="descargarMD()">⬇ Descargar (.md)</button>
-    <p style="font-size:12px;color:#5C5348;margin-top:10px;text-align:center;">Descarga el archivo .md y envíalo para recibir una propuesta ajustada a las necesidades de tu organización.</p>
-    <button type="button" class="btn btn-outline" onclick="limpiar()" style="margin-top:8px;">✖ Limpiar formulario</button>
   </div>
 
   </form>
