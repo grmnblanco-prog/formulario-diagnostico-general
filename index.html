@@ -227,11 +227,14 @@
       <div style="margin-bottom:6px;">
     <label>12. ¿Qué procesos de esta área llevan a cabo? <span class="tag">(marca todos los que apliquen)</span></label>
     <div class="opciones" data-multi="ops-procesos">
-      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de pedidos</div>
-      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Logística y entregas</div>
-      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Producción / fabricación</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de solicitudes / pedidos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Programación y agenda (citas)</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Asignación de recursos / equipo</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Producción / prestación del servicio</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Control de calidad</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Logística y entregas</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Inventario / insumos</div>
+      <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Gestión de proveedores</div>
       <div class="opcion" data-type="multi" onclick="toggleOpcion(this)">Servicio al cliente / soporte</div>
     </div>
   </div>
@@ -239,11 +242,14 @@
     <label>13. Selecciona el proceso principal y/o aquel en el que consideras conveniente aplicar IA</label>
     <select id="pyme-ops-proceso" onchange="autoFillPasos('ops',this.value)">
       <option value="">Selecciona...</option>
-      <option value="pedidos">Gestión de pedidos</option>
-      <option value="logistica">Logística y entregas</option>
-      <option value="produccion">Producción / fabricación</option>
+      <option value="pedidos">Gestión de solicitudes / pedidos</option>
+      <option value="agenda">Programación y agenda (citas)</option>
+      <option value="recursos">Asignación de recursos / equipo</option>
+      <option value="produccion">Producción / prestación del servicio</option>
       <option value="calidad">Control de calidad</option>
+      <option value="logistica">Logística y entregas</option>
       <option value="inventario">Inventario / insumos</option>
+      <option value="proveedores">Gestión de proveedores</option>
       <option value="soporte">Servicio al cliente / soporte</option>
       <option value="otro">Otro (personalizado)</option>
     </select>
@@ -427,6 +433,10 @@
         <div class="desc">Tenemos agentes autónomos que trabajan en equipo y toman decisiones.</div>
       </div>
     </div>
+    <div style="margin-bottom:6px;">
+      <label>Comentarios adicionales <span class="tag">(opcional)</span></label>
+      <textarea id="comentarios" rows="2" placeholder="Algo más que debamos saber..."></textarea>
+    </div>
     <div style="margin-top:16px;text-align:center;">
       <button type="button" class="btn btn-primary" onclick="descargarMD()">⬇ Descargar (.md)</button>
       <p style="font-size:12px;color:#5C5348;margin-top:10px;">Descarga el archivo .md y envíalo para recibir una propuesta ajustada a las necesidades de tu organización.</p>
@@ -484,7 +494,7 @@ function actualizarProgreso() {
 function autoFillPasos(area, value) {
   var stepsMap = {
     mv: {"prospeccion": "Lead entra → Se califica → Se asigna → Se contacta", "cotizacion": "Solicitud → Calcula precio → Envía propuesta → Negocia → Cierra", "cierre": "Propuesta aceptada → Contrato → Pago inicial → Ejecuta", "postventa": "Cliente recibe → Encuesta → Soporte → Fidelización", "crm": "Contacto → Registro → Segmenta → Campaña → Reporta", "publicidad": "Brief → Crea contenido → Publica → Mide → Optimiza", "otro": ""},
-    ops: {"pedidos": "Pedido entra → Verifica stock → Prepara → Despacha → Confirma", "logistica": "Solicitud de envío → Alista → Ruta → Entrega → Confirma", "produccion": "Insumos → Proceso → Control calidad → Empaque → Almacena", "calidad": "Muestra → Inspecciona → Mide → Reporta → Aprueba/Rechaza", "inventario": "Recepción → Registra → Almacena → Actualiza → Reporta", "soporte": "Ticket abre → Clasifica → Resuelve → Cierra → Encuesta", "otro": ""},
+    ops: {"pedidos": "Solicitud entra → Verifica disponibilidad → Prepara → Entrega → Confirma", "agenda": "Cliente solicita → Consulta disponibilidad → Agenda → Confirma → Recordatorio", "recursos": "Trabajo entra → Define perfiles → Verifica disponibilidad → Asigna responsable → Notifica", "logistica": "Solicitud de envío → Alista → Ruta → Entrega → Confirma", "produccion": "Recursos → Ejecución → Control de calidad → Entrega → Cierre", "calidad": "Muestra → Inspecciona → Mide → Reporta → Aprueba/Rechaza", "inventario": "Recepción → Registra → Almacena → Actualiza → Reporta", "proveedores": "Detecta necesidad → Busca proveedores → Pide cotización → Compara → Contrata", "soporte": "Ticket abre → Clasifica → Resuelve → Cierra → Encuesta", "otro": ""},
     fin: {"facturacion": "Venta → Genera factura → Envía → Registra → Archiva", "conciliacion": "Exporta movimientos → Compara → Ajusta → Concilia → Reporta", "cierre": "Revisa cuentas → Ajusta → Calcula impuestos → Cierra mes → Reporta", "cobranza": "Factura vence → Recuerda → Gestiona → Recibe → Concilia", "reporting_g": "Recopila datos \u2192 Analiza \u2192 Prepara informe \u2192 Presenta \u2192 Decide",
     "reporting": "Recopila datos → Clasifica → Calcula → Genera informe → Presenta", "otro": ""},
     rrhh: {"seleccion": "Vacante → Publica → Recibe CVs → Preselecciona → Entrevista → Contrata", "nomina": "Registra novedades → Calcula → Genera nómina → Paga → Reporta", "evaluacion": "Define metas → Evalúa → Retroalimenta → Califica → Archiva", "clima": "Diseña encuesta → Aplica → Analiza → Reporta → Plan de acción", "capacitacion": "Detecta necesidad → Diseña → Ejecuta → Evalúa → Certifica", "otro": ""},
@@ -497,6 +507,15 @@ function autoFillPasos(area, value) {
     input.value = stepsMap[area][value];
     if (value === 'otro') input.value = '';
   }
+}
+
+// Devuelve la etiqueta VISIBLE de un <select>, no su clave interna.
+// El .md exportado lo lee una persona (y alimenta la propuesta), asi que debe
+// decir "Programacion y agenda (citas)", no "agenda".
+function textoSelect(id) {
+  var s = document.getElementById(id);
+  if (!s || s.selectedIndex <= 0) return '';
+  return s.options[s.selectedIndex].text;
 }
 
 function recolectar() {
@@ -513,27 +532,27 @@ function recolectar() {
     r['micro_automatizar'] = document.getElementById('micro-automatizar').value;
   } else {
     r['mv_procesos_list'] = [...document.querySelectorAll('[data-multi="mv-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['mv_proceso'] = document.getElementById('pyme-mv-proceso').value;
+    r['mv_proceso'] = textoSelect('pyme-mv-proceso');
     r['mv_pasos'] = document.getElementById('pyme-mv-pasos').value;
     r['mv_cuello'] = document.getElementById('pyme-mv-cuello').value;
     r['mv_mejora'] = document.getElementById('pyme-mv-mejora').value;
     r['ops_procesos_list'] = [...document.querySelectorAll('[data-multi="ops-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['ops_proceso'] = document.getElementById('pyme-ops-proceso').value;
+    r['ops_proceso'] = textoSelect('pyme-ops-proceso');
     r['ops_pasos'] = document.getElementById('pyme-ops-pasos').value;
     r['ops_cuello'] = document.getElementById('pyme-ops-cuello').value;
     r['ops_mejora'] = document.getElementById('pyme-ops-mejora').value;
     r['fin_procesos_list'] = [...document.querySelectorAll('[data-multi="fin-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['fin_proceso'] = document.getElementById('pyme-fin-proceso').value;
+    r['fin_proceso'] = textoSelect('pyme-fin-proceso');
     r['fin_pasos'] = document.getElementById('pyme-fin-pasos').value;
     r['fin_cuello'] = document.getElementById('pyme-fin-cuello').value;
     r['fin_mejora'] = document.getElementById('pyme-fin-mejora').value;
     r['rrhh_procesos_list'] = [...document.querySelectorAll('[data-multi="rrhh-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['rrhh_proceso'] = document.getElementById('pyme-rrhh-proceso').value;
+    r['rrhh_proceso'] = textoSelect('pyme-rrhh-proceso');
     r['rrhh_pasos'] = document.getElementById('pyme-rrhh-pasos').value;
     r['rrhh_cuello'] = document.getElementById('pyme-rrhh-cuello').value;
     r['rrhh_mejora'] = document.getElementById('pyme-rrhh-mejora').value;
     r['dir_procesos_list'] = [...document.querySelectorAll('[data-multi="dir-procesos"] .active')].map(e => e.textContent.trim()).join(', ');
-    r['dir_proceso'] = document.getElementById('pyme-dir-proceso').value;
+    r['dir_proceso'] = textoSelect('pyme-dir-proceso');
     r['dir_pasos'] = document.getElementById('pyme-dir-pasos').value;
     r['dir_cuello'] = document.getElementById('pyme-dir-cuello').value;
     r['dir_mejora'] = document.getElementById('pyme-dir-mejora').value;
@@ -541,7 +560,9 @@ function recolectar() {
     r['ti_capacidad'] = [...document.querySelectorAll('[data-escala="ti-cap"] .active')].map(e => e.textContent.trim()).join(', ');
     r['infraestructura'] = [...document.querySelectorAll('[data-multi="infraestructura"] .active')].map(e => e.textContent.trim()).join(', ');
   }
-  r['comentarios'] = document.getElementById('comentarios').value;
+  // Lectura defensiva: si el campo no existe, no debe tumbar la exportacion entera.
+  var elComentarios = document.getElementById('comentarios');
+  r['comentarios'] = elComentarios ? elComentarios.value : '';
   return r;
 }
 
