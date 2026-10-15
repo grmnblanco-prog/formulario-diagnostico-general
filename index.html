@@ -97,6 +97,10 @@
     <input type="text" id="empresa" placeholder="Ej: Mi Empresa SAS">
   </div>
   <div style="margin-bottom:10px;">
+    <label>Correo electrónico <span class="tag">(para enviarte la propuesta)</span></label>
+    <input type="email" id="email" placeholder="Ej: contacto@miempresa.com">
+  </div>
+  <div style="margin-bottom:10px;">
     <label>2. Sector / industria</label>
     <select id="sector">
       <option value="">Selecciona...</option>
@@ -521,6 +525,9 @@ function textoSelect(id) {
 function recolectar() {
   var r = Object.assign({}, respuestas);
   r['empresa'] = document.getElementById('empresa').value;
+  // Lectura defensiva: un campo ausente no debe tumbar toda la recoleccion.
+  var elEmail = document.getElementById('email');
+  r['email'] = elEmail ? elEmail.value : '';
   r['sector'] = document.getElementById('sector').value;
   r['herramientas'] = [...document.querySelectorAll('[data-multi="herramientas"] .active')].map(e => e.textContent.trim()).join(', ');
   r['flujo_info'] = [...document.querySelectorAll('[data-radio="flujo"] .active')].map(e => e.textContent.trim()).join(', ');
@@ -571,6 +578,7 @@ function descargarMD() {
   var r = recolectar();
   var md = '# Diagnóstico de IA\n\n';
   md += '**Empresa:** ' + (r.empresa || '(no especificado)') + '\n';
+  md += '**Correo de contacto:** ' + (r.email || '(no especificado)') + '\n';
   md += '**Sector:** ' + (r.sector || '(no especificado)') + '\n';
   md += '**Tamaño:** ' + (r.tamano || '-') + '\n';
   md += '**Fecha:** ' + new Date().toLocaleDateString('es') + '\n\n';
@@ -648,6 +656,7 @@ function descargar() {
   txt += 'Fecha: ' + new Date().toLocaleDateString('es') + '\n';
   txt += 'Tamaño empresa: ' + r.tamano + '\n';
   txt += 'Empresa: ' + (r.empresa || '(no especificado)') + '\n';
+  txt += 'Correo: ' + (r.email || '(no especificado)') + '\n';
   txt += 'Sector: ' + (r.sector || '(no especificado)') + '\n\n';
   txt += '--- ECOSISTEMA TECNOLÓGICO ---\n';
   txt += 'Herramientas: ' + (r.herramientas || '(ninguna seleccionada)') + '\n';
