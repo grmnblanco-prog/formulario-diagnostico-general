@@ -531,6 +531,22 @@
 var tamano = "";
 var respuestas = {};
 
+// La pregunta de madurez cierra el formulario en los dos modos, asi que su
+// numero depende del modo: la 9 en microempresa y la 35 en PYME. Se CALCULA a
+// partir de las preguntas visibles en lugar de fijarlo en el HTML, para que
+// siga siendo correcto si se agregan o quitan preguntas mas adelante.
+function actualizarNumeroMadurez() {
+  var nums = [].slice.call(document.querySelectorAll('.card:not(.hidden) label'))
+    .map(function(e) {
+      var m = e.textContent.trim().match(/^(\d+)\./);
+      return m ? parseInt(m[1], 10) : null;
+    })
+    .filter(function(n) { return n !== null; });
+  var siguiente = nums.length ? Math.max.apply(null, nums) + 1 : 1;
+  var destino = document.querySelector('[data-section="madurez"] p strong');
+  if (destino) destino.textContent = siguiente + '.';
+}
+
 function seleccionarTamano(t) {
   tamano = t;
   document.querySelectorAll('#tamano .opcion').forEach(o => o.classList.remove('active'));
@@ -541,6 +557,7 @@ function seleccionarTamano(t) {
   document.querySelectorAll('[data-section="basica"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="' + t + '"]').forEach(c => c.classList.remove('hidden'));
   document.querySelectorAll('[data-section="madurez"]').forEach(c => c.classList.remove('hidden'));
+  actualizarNumeroMadurez();
         
   actualizarProgreso();
 }
