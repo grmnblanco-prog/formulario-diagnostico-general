@@ -101,6 +101,10 @@
     <input type="email" id="email" placeholder="Ej: contacto@miempresa.com">
   </div>
   <div style="margin-bottom:10px;">
+    <label>Página web <span class="tag">(opcional)</span></label>
+    <input type="text" id="web" placeholder="Ej: miempresa.com">
+  </div>
+  <div style="margin-bottom:10px;">
     <label>2. Sector / industria</label>
     <select id="sector">
       <option value="">Selecciona...</option>
@@ -528,6 +532,8 @@ function recolectar() {
   // Lectura defensiva: un campo ausente no debe tumbar toda la recoleccion.
   var elEmail = document.getElementById('email');
   r['email'] = elEmail ? elEmail.value : '';
+  var elWeb = document.getElementById('web');
+  r['web'] = elWeb ? elWeb.value : '';
   r['sector'] = document.getElementById('sector').value;
   r['herramientas'] = [...document.querySelectorAll('[data-multi="herramientas"] .active')].map(e => e.textContent.trim()).join(', ');
   r['flujo_info'] = [...document.querySelectorAll('[data-radio="flujo"] .active')].map(e => e.textContent.trim()).join(', ');
@@ -579,6 +585,7 @@ function descargarMD() {
   var md = '# Diagnóstico de IA\n\n';
   md += '**Empresa:** ' + (r.empresa || '(no especificado)') + '\n';
   md += '**Correo de contacto:** ' + (r.email || '(no especificado)') + '\n';
+  md += '**Página web:** ' + (r.web || '(no especificado)') + '\n';
   md += '**Sector:** ' + (r.sector || '(no especificado)') + '\n';
   md += '**Tamaño:** ' + (r.tamano || '-') + '\n';
   md += '**Fecha:** ' + new Date().toLocaleDateString('es') + '\n\n';
@@ -657,6 +664,7 @@ function descargar() {
   txt += 'Tamaño empresa: ' + r.tamano + '\n';
   txt += 'Empresa: ' + (r.empresa || '(no especificado)') + '\n';
   txt += 'Correo: ' + (r.email || '(no especificado)') + '\n';
+  txt += 'Página web: ' + (r.web || '(no especificado)') + '\n';
   txt += 'Sector: ' + (r.sector || '(no especificado)') + '\n\n';
   txt += '--- ECOSISTEMA TECNOLÓGICO ---\n';
   txt += 'Herramientas: ' + (r.herramientas || '(ninguna seleccionada)') + '\n';
