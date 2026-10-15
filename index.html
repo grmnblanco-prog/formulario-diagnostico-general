@@ -4,62 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formulario de Diagnóstico para Implementación de IA</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: #F5F0E8; color: #2D2A24; line-height: 1.5; }
-  .container { max-width: 780px; margin: 0 auto; padding: 20px; }
-  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-  .header-logo { height: 48px; width: auto; }
-  h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .subtitle { font-size: 13px; color: #8B8176; }
-  .card { background: #fff; border: 1px solid rgba(45,42,36,.08); border-radius: 10px; padding: 20px 24px; margin-bottom: 12px; }
-  .card h2 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: #E8633A; }
-  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #2D2A24; }
-  label .tag { font-size: 10px; color: #8B8176; font-weight: 400; }
-  select, input[type="text"], textarea {
-    width: 100%; padding: 8px 12px; border: 1px solid rgba(45,42,36,.1); border-radius: 6px;
-    font-size: 13px; background: #fff; outline: none; transition: .15s;
+<style>  /* ═══════════════════════════════════════════════════════════
+     Tokens unificados PropulsarIA — los MISMOS de la propuesta.
+     Al cambiar un valor aquí cambia en todo el formulario.
+     ═══════════════════════════════════════════════════════════ */
+  :root{
+    --bg:#F5F0E8;
+    --bg-card:#FCFAF6;
+    --topbar:#EDE7DB;
+    --text:#2D2A24;
+    --text-soft:#52525B;
+    --text-muted:#8B8176;
+    --accent:#E8633A;
+    --accent-hover:#D4522B;
+    --accent-light:rgba(232,99,58,.08);
+    --border:rgba(45,42,36,.08);
+    --line:rgba(45,42,36,.14);
+    --r-card:12px;
+    --r-input:8px;
+    --r-chip:8px;
+    --shadow:0 1px 3px rgba(45,42,36,.05);
   }
-  select:focus, input:focus, textarea:focus { border-color: #E8633A; }
-  .opciones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:-apple-system,'Inter','Segoe UI',system-ui,sans-serif;
+    background:var(--bg); color:var(--text);
+    line-height:1.62; -webkit-font-smoothing:antialiased;
+  }
+  .container { max-width:780px; margin:0 auto; padding:26px 20px 40px; }
+
+  /* ── Encabezado ── */
+  .header {
+    display:flex; align-items:center; gap:18px; margin-bottom:20px;
+    background:var(--topbar); border:1px solid var(--border);
+    border-radius:var(--r-card); padding:20px 24px;
+  }
+  .header-logo { height:56px; width:auto; mix-blend-mode:multiply; }
+  h1 { font-size:25px; font-weight:800; letter-spacing:-.6px; line-height:1.2; margin-bottom:5px; }
+  .subtitle { font-size:13px; color:var(--text-muted); line-height:1.5; }
+
+  /* ── Tarjetas ── */
+  .card {
+    background:var(--bg-card); border:1px solid var(--border);
+    border-top:4px solid var(--accent); border-radius:var(--r-card);
+    padding:22px 24px 20px; margin-bottom:16px; box-shadow:var(--shadow);
+  }
+  .card h2 {
+    font-size:17px; font-weight:800; letter-spacing:-.3px; color:var(--text);
+    margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border);
+  }
+
+  /* ── Campos ── */
+  label { display:block; font-size:13px; font-weight:700; margin-bottom:6px; color:var(--text); }
+  label .tag { font-size:10.5px; color:var(--text-muted); font-weight:500; }
+  select, input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea {
+    width:100%; padding:10px 13px; border:1px solid var(--border); border-radius:var(--r-input);
+    font-size:14px; font-family:inherit; color:var(--text); background:#fff;
+    outline:none; transition:border-color .15s, box-shadow .15s;
+  }
+  select:focus, input[type="text"]:focus, input[type="email"]:focus,
+  input[type="tel"]:focus, input[type="url"]:focus, textarea:focus {
+    border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light);
+  }
+  textarea { min-height:80px; resize:vertical; line-height:1.55; }
+
+  /* ── Chips de opción ── */
+  .opciones { display:flex; gap:9px; flex-wrap:wrap; margin-top:6px; }
   .opcion {
-    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px;
-    border: 1px solid rgba(45,42,36,.08); cursor: pointer; font-size: 12px; background: #fff; transition: .15s;
-    max-width: 100%; word-break: break-word;
+    display:inline-flex; align-items:center; gap:7px; padding:9px 15px;
+    border-radius:var(--r-chip); border:1px solid var(--border); cursor:pointer;
+    font-size:13px; background:#fff; transition:.15s; max-width:100%; word-break:break-word;
   }
-  .opcion[data-type="radio"]::before { content: "○"; font-size: 14px; margin-right: 4px; }
-  .opcion[data-type="multi"]::before { content: "□"; font-size: 14px; margin-right: 4px; }
-  .opcion[data-type="radio"].active::before { content: "●"; color: #E8633A; }
-  .opcion[data-type="multi"].active::before { content: "☑"; color: #E8633A; }
-  .opcion:hover { border-color: rgba(232,99,58,.2); }
-  .opcion input { display: none; }
-  .opcion.active { border-color: #E8633A; background: rgba(232,99,58,.06); }
-  .escala { display: flex; gap: 6px; justify-content: center; margin-top: 4px; }
+  .opcion[data-type="radio"]::before { content:"○"; font-size:14px; color:var(--text-muted); }
+  .opcion[data-type="multi"]::before { content:"□"; font-size:14px; color:var(--text-muted); }
+  .opcion[data-type="radio"].active::before { content:"●"; color:var(--accent); }
+  .opcion[data-type="multi"].active::before { content:"☑"; color:var(--accent); }
+  .opcion:hover { border-color:rgba(232,99,58,.35); }
+  .opcion input { display:none; }
+  .opcion.active { border-color:var(--accent); background:var(--accent-light); }
+
+  /* ── Escala de madurez / numérica ── */
+  .escala { display:flex; gap:8px; justify-content:center; margin-top:6px; }
   .escala .num {
-    width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(45,42,36,.1);
-    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: .15s; background: #fff;
+    width:44px; height:44px; border-radius:50%; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; cursor:pointer; transition:.15s; background:#fff;
   }
-  .escala .num:hover { border-color: rgba(232,99,58,.3); }
-  .escala .num.active { border-color: #E8633A; background: rgba(232,99,58,.12); }
-  .btn { padding: 10px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: .15s; }
-  .btn-primary { background: #E8633A; color: #fff; }
-  .btn-primary:hover { background: #D4522B; }
-  .btn-outline { background: transparent; border: 1px solid rgba(45,42,36,.12); color: #5C5348; }
-  .acciones { display: flex; gap: 8px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
-  .hidden { display: none !important; }
-  .progreso { height: 4px; background: rgba(232,99,58,.15); border-radius: 2px; margin-bottom: 4px; }
-  .progreso .bar { height: 100%; width: 0%; background: #E8633A; border-radius: 2px; transition: width .3s; }
-  .madurez-cards { display: grid; gap: 8px; margin-top: 4px; }
+  .escala .num:hover { border-color:rgba(232,99,58,.35); }
+  .escala .num.active { border-color:var(--accent); background:var(--accent-light); color:var(--accent-hover); }
+
+  /* ── Botones ── */
+  .btn {
+    padding:12px 26px; border-radius:var(--r-input); border:none;
+    font-size:14px; font-weight:700; font-family:inherit; cursor:pointer; transition:.15s;
+  }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:hover { background:var(--accent-hover); }
+  .btn-outline { background:transparent; border:1px solid var(--border); color:var(--text-soft); }
+  .btn-outline:hover { border-color:rgba(45,42,36,.22); color:var(--text); }
+  .acciones { display:flex; gap:10px; justify-content:center; margin-top:24px; flex-wrap:wrap; }
+
+  /* ── Progreso ── */
+  .progreso { height:5px; background:rgba(232,99,58,.15); border-radius:3px; margin-bottom:14px; }
+  .progreso .bar { height:100%; width:0%; background:var(--accent); border-radius:3px; transition:width .3s; }
+
+  /* ── Nivel de madurez ── */
+  .madurez-cards { display:grid; gap:10px; margin-top:6px; }
   .madurez-card {
-    padding: 10px 14px; border: 1px solid rgba(45,42,36,.08); border-radius: 8px; cursor: pointer; transition: .15s;
-    font-size: 12px; background: #fff;
+    padding:13px 16px; border:1px solid var(--border); border-radius:var(--r-chip);
+    cursor:pointer; transition:.15s; font-size:13px; background:#fff;
   }
-  .madurez-card:hover { border-color: rgba(232,99,58,.2); }
-  .madurez-card.active { border-color: #E8633A; background: rgba(232,99,58,.06); }
-  .madurez-card .nivel { font-size: 14px; font-weight: 700; color: #E8633A; }
-  .madurez-card .desc { font-size: 11px; color: #5C5348; margin-top: 2px; }
-  @media (max-width:600px){ .container{padding:14px;} .card{padding:14px 16px;} .opcion{padding:5px 10px; font-size:11px;} }
+  .madurez-card:hover { border-color:rgba(232,99,58,.35); }
+  .madurez-card.active { border-color:var(--accent); background:var(--accent-light); }
+  .madurez-card .nivel { font-size:14px; font-weight:800; color:var(--accent); }
+  .madurez-card .desc { font-size:11.5px; color:var(--text-soft); margin-top:3px; }
+
+  /* ── Utilitario crítico: el JS lo usa para mostrar/ocultar secciones ── */
+  .hidden { display:none !important; }
+
+  @media (max-width:600px){
+    .container { padding:16px 14px 32px; }
+    .header { padding:16px 16px; gap:14px; }
+    .header-logo { height:44px; }
+    h1 { font-size:20px; }
+    .card { padding:16px 16px; }
+    .card h2 { font-size:15.5px; }
+    .opcion { padding:8px 12px; font-size:12px; }
+    .escala .num { width:38px; height:38px; font-size:13px; }
+  }
 </style>
 </head>
 <body>
